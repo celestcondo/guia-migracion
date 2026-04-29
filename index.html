@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Migración Shopify → Tiendanube · Afiliados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+  :root {
+    --blue: #0050c3;
+    --blue-dark: #171E43;
+    --blue-light: #BCDFFD;
+    --blue-clear: #DEEFFE;
+    --blue-bg: #f5faff;
+    --blue-deep: #010B23;
+    --sky: #00b4e6;
+    --green: #0ca76b;
+    --white: #ffffff;
+    --grey-lightest: #E7E8E9;
+    --grey-light: #A0A3A6;
+    --grey-text: #343537;
+    --grey-bg: #f7f7f7;
+    --radius-sm: 3px;
+    --radius-md: 6px;
+    --radius-lg: 16px;
+    --radius-pill: 100px;
+    --shadow: 0 24px 48px -12px rgba(50,50,93,0.1), 0 18px 36px -18px rgba(0,0,0,0.1);
+    --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+    --ease: cubic-bezier(0.19, 1, 0.22, 1);
+    --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--white);
+    color: var(--grey-text);
+    line-height: 1.6;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    background: rgba(1, 11, 35, 0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0 32px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+  }
+
+  .nav-logo img { height: 28px; width: auto; display: block; }
+
+  .nav-badge {
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(0,80,195,0.4);
+    border: 1px solid rgba(0,80,195,0.6);
+    color: var(--blue-light);
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: var(--radius-md);
+    transition: all 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+
+  @media (max-width: 768px) { .nav-links { display: none; } }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    height: 2px;
+    background: var(--blue);
+    z-index: 1029;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: radial-gradient(203.73% 209.35% at 3.75% 130.93%, #0050c3 0%, #00298f 29.81%, #080558 65.38%, #010b23 100%);
+    display: flex;
+    align-items: center;
+    padding: 120px 32px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(188,223,253,0.12) 0%, transparent 50%),
+                radial-gradient(circle at 10% 80%, rgba(0,80,195,0.2) 0%, transparent 40%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(188,223,253,0.12);
+    border: 1px solid rgba(188,223,253,0.25);
+    color: var(--blue-light);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 32px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: var(--sky); animation: pulse 2s infinite; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero h1 {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+
+  .hero h1 .accent {
+    background: linear-gradient(135deg, #BCDFFD, #00b4e6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+    max-width: 580px;
+    margin: 0 auto 48px;
+    line-height: 1.6;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 600px;
+    margin: 0 auto 48px;
+  }
+
+  .hero-stat {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-lg);
+    padding: 20px 16px;
+    backdrop-filter: blur(5px);
+  }
+
+  .hero-stat-num {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .hero-stat-num .small { font-size: 18px; }
+
+  .hero-stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 500;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    color: var(--blue);
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: var(--radius-pill);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .hero-cta:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.4);
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: bounce 2s infinite;
+  }
+
+  .hero-scroll svg { opacity: 0.5; }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 96px 32px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 20px;
+    height: 2px;
+    background: var(--blue);
+  }
+
+  .section-title {
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 800;
+    color: var(--blue-dark);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 18px;
+    color: var(--grey-light);
+    max-width: 580px;
+    line-height: 1.6;
+    margin-bottom: 56px;
+  }
+
+  /* ── COMPARATIVA ── */
+  .compare-section {
+    background: var(--grey-bg);
+    padding: 96px 0;
+  }
+
+  .compare-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .compare-table thead tr {
+    background: var(--blue-dark);
+  }
+
+  .compare-table thead th {
+    padding: 24px 28px;
+    text-align: left;
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .compare-table thead th:first-child {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    font-weight: 500;
+    width: 28%;
+  }
+
+  .compare-table thead th.col-tn {
+    background: var(--blue);
+  }
+
+  .compare-table thead th.col-shopify {
+    background: rgba(255,255,255,0.06);
+  }
+
+  .col-tn-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .col-tn-badge::after {
+    content: '✓ Recomendado';
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(12,167,107,0.25);
+    color: #6DFFC6;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+  }
+
+  .compare-table tbody tr {
+    background: var(--white);
+    transition: background 0.15s;
+  }
+
+  .compare-table tbody tr:hover { background: var(--blue-bg); }
+
+  .compare-table tbody tr:not(:last-child) td {
+    border-bottom: 1px solid var(--grey-lightest);
+  }
+
+  .compare-table td {
+    padding: 18px 28px;
+    font-size: 14px;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .compare-table td:first-child {
+    font-weight: 600;
+    color: var(--blue-dark);
+    font-size: 13px;
+    background: var(--blue-bg);
+    border-right: 1px solid var(--grey-lightest);
+  }
+
+  .compare-table td.cell-tn {
+    border-right: 1px solid var(--grey-lightest);
+    border-left: 1px solid rgba(0,80,195,0.12);
+    background: rgba(0,80,195,0.02);
+  }
+
+  .cell-win {
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  .cell-neutral { color: var(--grey-text); }
+  .cell-lose { color: #cc4444; }
+
+  .cell-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    margin-top: 4px;
+  }
+
+  .tag-win { background: rgba(12,167,107,0.1); color: var(--green); }
+  .tag-risk { background: rgba(204,68,68,0.1); color: #cc4444; }
+  .tag-neutral { background: var(--grey-lightest); color: var(--grey-light); }
+
+  /* ── TOOLS ── */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .tool-card {
+    background: var(--white);
+    border: 1px solid var(--grey-lightest);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tool-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s var(--ease);
+  }
+
+  .tool-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .tool-card:hover::before { transform: scaleX(1); }
+
+  .tool-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .tool-icon.blue { background: var(--blue-clear); }
+  .tool-icon.green { background: rgba(12,167,107,0.1); }
+  .tool-icon.sky { background: rgba(0,180,230,0.1); }
+
+  .tool-name {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--blue-dark);
+    margin-bottom: 8px;
+  }
+
+  .tool-tagline {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--blue);
+    margin-bottom: 12px;
+  }
+
+  .tool-desc {
+    font-size: 14px;
+    color: var(--grey-light);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .tool-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .tool-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--grey-text);
+  }
+
+  .tool-features li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .tool-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .tool-link:hover { border-color: var(--blue); }
+
+  /* Feature highlight card */
+  .feature-highlight {
+    background: var(--blue-dark);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    color: var(--white);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-highlight::before {
+    content: '';
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(0,80,195,0.3);
+  }
+
+  .feature-highlight::after {
+    content: '';
+    position: absolute;
+    right: 20px;
+    bottom: -40px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(0,180,230,0.15);
+  }
+
+  .feature-highlight-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,180,230,0.2);
+    border: 1px solid rgba(0,180,230,0.4);
+    color: var(--sky);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 16px;
+  }
+
+  .feature-highlight h3 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .feature-highlight p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+    max-width: 520px;
+  }
+
+  .feature-stat {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  .feature-stat-num {
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .feature-stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    max-width: 120px;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  @media (max-width: 768px) {
+    .feature-highlight { grid-template-columns: 1fr; }
+    .feature-stat { text-align: left; }
+  }
+
+  /* ── OBJECTIONS ── */
+  .objections-section {
+    background: var(--blue-dark);
+    padding: 96px 0;
+  }
+
+  .objections-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .objections-inner .section-title { color: var(--white); }
+  .objections-inner .section-label { color: var(--sky); }
+  .objections-inner .section-label::before { background: var(--sky); }
+  .objections-inner .section-sub { color: rgba(255,255,255,0.55); }
+
+  .objections-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .objection-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .objection-card:hover { background: rgba(255,255,255,0.07); }
+
+  .objection-trigger {
+    width: 100%;
+    padding: 24px 28px;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    transition: color 0.2s;
+  }
+
+  .objection-trigger:hover { color: var(--blue-light); }
+
+  .objection-quote {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .objection-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(0,80,195,0.3);
+    border: 1px solid rgba(0,80,195,0.5);
+    color: var(--blue-light);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .objection-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    transition: transform 0.3s var(--ease);
+  }
+
+  .objection-card.open .objection-icon { transform: rotate(45deg); }
+
+  .objection-body {
+    display: none;
+    padding: 0 28px 24px;
+  }
+
+  .objection-card.open .objection-body { display: block; }
+
+  .objection-what {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    font-style: italic;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.04);
+    border-left: 2px solid rgba(0,80,195,0.5);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+
+  .objection-script {
+    font-size: 15px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .objection-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: rgba(12,167,107,0.1);
+    border: 1px solid rgba(12,167,107,0.2);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #6DFFC6;
+    line-height: 1.5;
+  }
+
+  .objection-tip::before { content: '💡'; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── RED DE ESPECIALISTAS ── */
+  .network-section {
+    background: var(--blue-bg);
+    padding: 96px 32px;
+  }
+
+  .network-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .network-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .network-card {
+    background: var(--white);
+    border: 1px solid var(--grey-lightest);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .network-card-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .network-card h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin-bottom: 8px;
+  }
+
+  .network-card p {
+    font-size: 14px;
+    color: var(--grey-light);
+    line-height: 1.6;
+  }
+
+  .network-cta-box {
+    background: var(--blue);
+    border-radius: var(--radius-lg);
+    padding: 48px;
+    text-align: center;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .network-cta-box::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .network-cta-box h3 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .network-cta-box p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 28px;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    color: var(--blue);
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: var(--radius-pill);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-white:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+  /* ── QUICK REFERENCE ── */
+  .quick-ref {
+    background: var(--grey-bg);
+    padding: 96px 0;
+  }
+
+  .quick-ref-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    position: relative;
+  }
+
+  .steps-grid::before {
+    content: '';
+    position: absolute;
+    top: 36px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--sky));
+    z-index: 0;
+  }
+
+  .step-item {
+    text-align: center;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-num {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 24px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 0 6px var(--grey-bg);
+  }
+
+  .step-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin-bottom: 8px;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: var(--grey-light);
+    line-height: 1.5;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--blue-deep);
+    color: rgba(255,255,255,0.5);
+    padding: 40px 32px;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  .footer strong { color: rgba(255,255,255,0.8); }
+
+  /* ── UTILITIES ── */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+  }
+
+  .chip-blue { background: var(--blue-clear); color: var(--blue); }
+  .chip-green { background: rgba(12,167,107,0.1); color: var(--green); }
+  .chip-red { background: rgba(204,68,68,0.08); color: #cc4444; }
+
+  /* animate on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .hero-stats > :last-child { grid-column: 1 / -1; }
+    .section { padding: 64px 20px; }
+    .compare-section, .objections-section, .quick-ref, .network-section { padding: 64px 0; }
+    .compare-inner, .objections-inner, .quick-ref-inner, .network-inner { padding: 0 20px; }
+    .feature-highlight { padding: 28px; }
+    .steps-grid::before { display: none; }
+    .network-cta-box { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">
+    <img src="https://ranking-afiliados.vercel.app/tn_logo.svg" alt="Tiendanube">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#comparativa">Comparativa</a></li>
+    <li><a href="#herramientas">Herramientas</a></li>
+    <li><a href="#objeciones">Objeciones</a></li>
+    <li><a href="#red">Red de Expertos</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+  </ul>
+  <span class="nav-badge">Comunidad Tiendanube Afiliados</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span></span>
+      Guía de Migración · Shopify → Tiendanube
+    </div>
+    <h1>Tu próxima gran<br>oportunidad:<br><span class="accent">la migración</span></h1>
+    <p class="hero-sub">
+      Muchos de tus clientes ya venden en Shopify y están pagando en dólares sin soporte local. Esta guía te da todos los argumentos y herramientas para que des el paso con ellos.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">1<span class="small">/5</span></div>
+        <div class="hero-stat-label">De cada 5 clientes de Shopify que prueban Tiendanube, 1 se convierte en cliente pago</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">180<span class="small">K</span></div>
+        <div class="hero-stat-label">Tiendas activas en toda Latinoamérica — la plataforma líder de la región</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">+40<span class="small">%</span></div>
+        <div class="hero-stat-label">Crecimiento real del ecosistema Tiendanube en 2025, por encima de la inflación</div>
+      </div>
+    </div>
+    <a href="#comparativa" class="hero-cta">
+      Ver la guía completa
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+  <div class="hero-scroll">
+    Scrolleá
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+</section>
+
+<!-- COMPARATIVA -->
+<section class="compare-section" id="comparativa">
+  <div class="compare-inner">
+    <div class="section-label reveal">01 — La comparativa</div>
+    <h2 class="section-title reveal">Shopify vs Tiendanube:<br>el argumento que cierra la venta</h2>
+    <p class="section-sub reveal">Los números y razones concretas para hablar con tu cliente. No son opiniones: son datos.</p>
+
+    <div class="reveal" style="overflow-x: auto;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="col-tn"><span class="col-tn-badge">Tiendanube</span></th>
+            <th class="col-shopify">Shopify</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Precio base</td>
+            <td class="cell-tn">
+              <span class="cell-win">Desde ~$25.000 ARS/mes</span><br>
+              <span class="cell-tag tag-win">En pesos · sin sorpresas</span>
+            </td>
+            <td>
+              <span class="cell-lose">Desde USD 20/mes (~$30.000 ARS)</span><br>
+              <span class="cell-tag tag-risk">Sube con el dólar</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Comisión por venta</td>
+            <td class="cell-tn">
+              <span class="cell-win">2% bonificado con Pago Nube</span><br>
+              <span class="cell-tag tag-win">Efectivamente 0% + ahorro 21.6%</span>
+            </td>
+            <td>
+              <span class="cell-lose">2% + transaction fees de terceros</span><br>
+              <span class="cell-tag tag-risk">Costo real mucho mayor</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Medios de pago</td>
+            <td class="cell-tn">
+              <span class="cell-win">Pago Nube nativo</span><br>
+              Mercado Pago, tarjetas, cuotas, Modo, MODO — todo integrado y actualizado
+            </td>
+            <td>
+              <span class="cell-neutral">Requiere apps de terceros en AR</span><br>
+              Sin checkout localizado ni cuotas automáticas argentinas
+            </td>
+          </tr>
+          <tr>
+            <td>Logística y envíos</td>
+            <td class="cell-tn">
+              <span class="cell-win">Envío Nube nativo</span><br>
+              OCA, Andreani, Mercado Envíos — 16% más barato que el mercado
+            </td>
+            <td>
+              <span class="cell-neutral">Sin integración nativa con correos AR</span><br>
+              Necesita apps o desarrollos adicionales
+            </td>
+          </tr>
+          <tr>
+            <td>Soporte</td>
+            <td class="cell-tn">
+              <span class="cell-win">Humano · 24/7 · en español rioplatense</span><br>
+              Entiende medios de pago, AFIP, logística local
+            </td>
+            <td>
+              <span class="cell-lose">Chatbot global en inglés</span><br>
+              Sin equipo dedicado para Argentina
+            </td>
+          </tr>
+          <tr>
+            <td>Marketing integrado</td>
+            <td class="cell-tn">
+              <span class="cell-win">Marketing Nube incluido</span><br>
+              $169M USD en ventas asistidas · email, SMS, automatizaciones
+            </td>
+            <td>
+              <span class="cell-neutral">Klaviyo y similares en USD adicionales</span><br>
+              No incluidos en el plan base
+            </td>
+          </tr>
+          <tr>
+            <td>Landing pages / Integraciones</td>
+            <td class="cell-tn">
+              <span class="cell-win">+200 apps · integraciones locales nativas</span><br>
+              Xubio, Colppy, ERPs argentinos sin configuración compleja
+            </td>
+            <td>
+              <span class="cell-neutral">+6.000 apps globales (muchas en USD)</span><br>
+              Landing pages avanzadas requieren apps pagas o código
+            </td>
+          </tr>
+          <tr>
+            <td>Diseño y plantillas</td>
+            <td class="cell-tn">
+              <span class="cell-win">65+ plantillas premium</span><br>
+              Diseño adaptado al mercado local
+            </td>
+            <td>
+              <span class="cell-neutral">Diseños premium cuestan USD adicionales</span><br>
+              Muchos no son responsive para AR
+            </td>
+          </tr>
+          <tr>
+            <td>Predicibilidad de costos</td>
+            <td class="cell-tn">
+              <span class="cell-win">Planes en pesos · sin variación cambiaria</span><br>
+              Sabés exactamente cuánto pagás cada mes
+            </td>
+            <td>
+              <span class="cell-lose">USD + tipo de cambio + apps en USD</span><br>
+              Costo real puede duplicarse ante devaluación
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- HERRAMIENTAS -->
+<section class="section" id="herramientas">
+  <div class="section-label reveal">02 — Las herramientas</div>
+  <h2 class="section-title reveal">El kit de migración:<br>todo lo que necesitás saber</h2>
+  <p class="section-sub reveal">Estas herramientas eliminan el mayor freno: el miedo a la complejidad. Conocerlas es tu diferencial como especialista.</p>
+
+  <div class="tools-grid">
+
+    <div class="tool-card reveal">
+      <div class="tool-icon blue">⚡</div>
+      <div class="tool-tagline">Migración de catálogo</div>
+      <div class="tool-name">Automágico</div>
+      <p class="tool-desc">App oficial disponible en el App Store de Tiendanube. Migra el catálogo completo desde Shopify vía API, sin exportar CSVs ni copiar a mano.</p>
+      <ul class="tool-features">
+        <li>Productos, fotos y variaciones completas</li>
+        <li>Inventario y precios actualizados</li>
+        <li>Categorías y colecciones</li>
+        <li>Proceso automatizado vía API (no manual)</li>
+        <li>Compatible con Shopify, WooCommerce, Empretienda y más</li>
+      </ul>
+      <a href="https://www.tiendanube.com/tienda-aplicaciones-nube/automagico-by-empreender" target="_blank" class="tool-link">
+        Ver en el App Store →
+      </a>
+      <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--grey-lightest);">
+        <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--blue); margin-bottom: 10px;">🤝 Alianza exclusiva para afiliados Tiendanube</div>
+        <p style="font-size: 13px; color: var(--grey-light); margin-bottom: 14px; line-height: 1.5;">Tenemos un acuerdo especial con Empreender, los desarrolladores de Automágico. Accedé a la prueba gratis.</p>
+        <a href="https://beneficio-empreender.vercel.app/" target="_blank" style="display:inline-flex; align-items:center; gap:8px; background:var(--blue); color:var(--white); font-family:var(--font); font-size:13px; font-weight:700; padding:10px 18px; border-radius:var(--radius-pill); text-decoration:none; transition:all 0.2s;">
+          Solicitar prueba gratis →
+        </a>
+      </div>
+    </div>
+
+    <div class="tool-card reveal">
+      <div class="tool-icon green">🔄</div>
+      <div class="tool-tagline">Migración completa</div>
+      <div class="tool-name">LitExtension</div>
+      <p class="tool-desc">Plataforma especializada en migraciones de e-commerce. Va más allá del catálogo: migra también el historial de órdenes y la base de clientes.</p>
+      <ul class="tool-features">
+        <li>Productos, descripciones, imágenes y variantes</li>
+        <li>Historial de órdenes completo</li>
+        <li>Base de datos de clientes y sus datos</li>
+        <li>Categorías, cupones y reseñas</li>
+        <li>Migración en paralelo: la tienda sigue activa</li>
+      </ul>
+      <a href="https://www.tiendanube.com/tienda-aplicaciones-nube/litextension-store-migration" target="_blank" class="tool-link">
+        Ver en el App Store →
+      </a>
+    </div>
+
+  </div>
+
+  <!-- FEATURE HIGHLIGHT: Google Catalog -->
+  <div class="feature-highlight reveal">
+    <div>
+      <div class="feature-highlight-badge">
+        🆕 Feature disponible
+      </div>
+      <h3>Migración de catálogos a Google:<br>cero pérdida de performance</h3>
+      <p>
+        Cuando un merchant migra desde Shopify, necesita transferir su feed de productos a Google para mantener sus campañas activas. Antes, ese proceso era manual y llevaba días. Ahora Tiendanube lo automatiza: el merchant migra y sus campañas de Google siguen corriendo sin interrupciones. Especialmente crítico para negocios con alta inversión en Google Ads.
+      </p>
+      <br>
+      <p style="font-size:13px; color: rgba(255,255,255,0.45);">Disponible para merchants que migran desde otra plataforma · Consultá con el equipo de Tiendanube para activarlo</p>
+    </div>
+    <div class="feature-stat">
+      <div class="feature-stat-num">0</div>
+      <div class="feature-stat-label">días de downtime en campañas de Google</div>
+    </div>
+  </div>
+
+  <!-- PARALLEL OPERATION TIP -->
+  <div style="background: var(--blue-bg); border: 1px solid var(--blue-clear); border-radius: var(--radius-lg); padding: 28px 32px; margin-top: 24px;" class="reveal">
+    <div style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--blue); margin-bottom: 12px;">💡 La clave que rompe el miedo al downtime</div>
+    <p style="font-size: 16px; color: var(--blue-dark); font-weight: 600; margin-bottom: 8px;">El cliente puede operar en las dos tiendas al mismo tiempo mientras migra.</p>
+    <p style="font-size: 14px; color: var(--grey-light); line-height: 1.6;">No es "cerrar Shopify y abrir Tiendanube". El proceso es gradual: se migra el catálogo, se configura la nueva tienda, se prueba que todo funciona, y recién ahí se redirige el dominio. Cero pérdida de ventas, cero downtime.</p>
+  </div>
+</section>
+
+<!-- OBJECIONES -->
+<section class="objections-section" id="objeciones">
+  <div class="objections-inner">
+    <div class="section-label reveal">03 — Scripts de venta</div>
+    <h2 class="section-title reveal">Las 4 objeciones más frecuentes<br>(y cómo responderlas)</h2>
+    <p class="section-sub reveal">Basado en las respuestas reales de afiliados que ya hicieron migraciones. Tené estas respuestas listas.</p>
+
+    <div class="objections-grid">
+
+      <div class="objection-card reveal" onclick="toggleObjection(this)">
+        <button class="objection-trigger">
+          <span class="objection-quote">
+            <span class="objection-num">1</span>
+            "Ya tengo todo configurado, no me conviene moverme"
+          </span>
+          <svg class="objection-icon" viewBox="0 0 20 20" fill="none">
+            <path d="M10 4v12M4 10h12" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="objection-body">
+          <p class="objection-what">"Me llevó meses configurar todo, no quiero empezar desde cero."</p>
+          <p class="objection-script">
+            Entiendo, y es válido proteger el trabajo que ya hiciste. La buena noticia es que <strong>no empezás de cero</strong>. Con Automágico o LitExtension, tu catálogo completo — productos, fotos, variaciones, precios — migra automáticamente vía API. No es copiar y pegar, es una importación automática. Lo que ya armaste se mueve con vos.
+          </p>
+          <div class="objection-tip">Las configuraciones de envío y pago son más simples en Tiendanube porque Pago Nube y Envío Nube ya están integrados — no hay que configurar APIs de terceros.</div>
+        </div>
+      </div>
+
+      <div class="objection-card reveal" onclick="toggleObjection(this)">
+        <button class="objection-trigger">
+          <span class="objection-quote">
+            <span class="objection-num">2</span>
+            "Tengo miedo de perder datos o que se caigan mis ventas"
+          </span>
+          <svg class="objection-icon" viewBox="0 0 20 20" fill="none">
+            <path d="M10 4v12M4 10h12" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="objection-body">
+          <p class="objection-what">"¿Y si algo sale mal durante la migración? ¿Pierdo ventas?"</p>
+          <p class="objection-script">
+            No perdés nada porque el proceso es <strong>en paralelo</strong>. Las dos tiendas existen al mismo tiempo. Vos migrás el catálogo, configurás la nueva tienda, la probás al 100%, y recién cuando estás seguro redirigís el dominio. Shopify sigue activa mientras tanto. LitExtension hasta migra el historial de órdenes y los datos de clientes, así que nada se pierde.
+          </p>
+          <div class="objection-tip">Caso real: CeCe Piume migró de Empretienda en un día y no perdió ni una venta. El proceso es más rápido y seguro de lo que parece.</div>
+        </div>
+      </div>
+
+      <div class="objection-card reveal" onclick="toggleObjection(this)">
+        <button class="objection-trigger">
+          <span class="objection-quote">
+            <span class="objection-num">3</span>
+            "Shopify tiene muchas más apps e integraciones"
+          </span>
+          <svg class="objection-icon" viewBox="0 0 20 20" fill="none">
+            <path d="M10 4v12M4 10h12" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="objection-body">
+          <p class="objection-what">"Shopify tiene miles de apps, Tiendanube parece limitado."</p>
+          <p class="objection-script">
+            Shopify tiene más apps globales, sí. Pero el 80% de lo que necesitás para vender en Argentina está <strong>nativo en Tiendanube</strong>, sin apps de pago adicionales: Pago Nube, Envío Nube, Marketing Nube, integración con Mercado Libre, Facebook, Google, ERPs locales como Xubio y Colppy. En Shopify, cada una de esas integraciones es una app que se paga en dólares por separado.
+          </p>
+          <div class="objection-tip">Preguntale qué apps usa en Shopify. Probablemente el 80% ya existe gratis o incluida en el plan de Tiendanube.</div>
+        </div>
+      </div>
+
+      <div class="objection-card reveal" onclick="toggleObjection(this)">
+        <button class="objection-trigger">
+          <span class="objection-quote">
+            <span class="objection-num">4</span>
+            "¿No es complicado migrar? Parece mucho trabajo"
+          </span>
+          <svg class="objection-icon" viewBox="0 0 20 20" fill="none">
+            <path d="M10 4v12M4 10h12" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="objection-body">
+          <p class="objection-what">"Suena complejo, no tengo tiempo para eso."</p>
+          <p class="objection-script">
+            Tiene sentido que parezca complejo, pero no lo es. Con Automágico el catálogo se migra en minutos, automáticamente. Lo que lleva tiempo es la configuración inicial de la tienda nueva (diseño, dominio, medios de pago), pero eso es un proceso de pocas horas — no semanas. Además, si te sumás a la red de especialistas, podemos hacer esto juntos para tus clientes.
+          </p>
+          <div class="objection-tip">Podés ofrecerle al cliente migrar vos por él, como servicio. Varios afiliados ya están cobrando por este proceso.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO PASO A PASO -->
+<section class="quick-ref" id="proceso">
+  <div class="quick-ref-inner">
+    <div class="section-label reveal">04 — El proceso</div>
+    <h2 class="section-title reveal">Cómo es una migración,<br>paso a paso</h2>
+    <p class="section-sub reveal">Para que puedas explicárselo a tu cliente en 2 minutos.</p>
+
+    <div class="steps-grid">
+      <div class="step-item reveal">
+        <div class="step-num">1</div>
+        <div class="step-title">Crear la cuenta en Tiendanube</div>
+        <p class="step-desc">Trial gratuito (con tu link de afiliado). La tienda de Shopify sigue activa: no se cierra nada todavía.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">2</div>
+        <div class="step-title">Migrar el catálogo</div>
+        <p class="step-desc">Con Automágico o LitExtension: productos, fotos, variaciones e inventario migran automáticamente.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">3</div>
+        <div class="step-title">Elegir un plan pago</div>
+        <p class="step-desc">Necesario para acceder a Pago Nube, Envío Nube, dominio propio y todas las herramientas del ecosistema Tiendanube.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">4</div>
+        <div class="step-title">Configurar y probar</div>
+        <p class="step-desc">Elegir plantilla, conectar Pago Nube y Envío Nube. Hacer una compra de prueba antes de publicar.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">5</div>
+        <div class="step-title">Redirigir el dominio</div>
+        <p class="step-desc">Solo cuando está todo listo. El dominio se apunta a Tiendanube: listo, la migración está hecha.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RED DE ESPECIALISTAS -->
+<section class="network-section" id="red">
+  <div class="network-inner">
+    <div class="section-label reveal">05 — La oportunidad</div>
+    <h2 class="section-title reveal">Sumarte a la red de<br>especialistas en migración</h2>
+    <p class="section-sub reveal">Tiendanube está armando un equipo de afiliados expertos en migración para asistir a sus propios leads. Esto es lo que implica.</p>
+
+    <div class="network-grid">
+      <div class="network-card reveal">
+        <div class="network-card-icon">🎯</div>
+        <h4>Leads calificados de Tiendanube</h4>
+        <p>Recibís leads de merchants que ya quieren migrar y que Tiendanube captó. Tu trabajo: ejecutar la migración técnica.</p>
+      </div>
+      <div class="network-card reveal">
+        <div class="network-card-icon">💰</div>
+        <h4>Cobrás por el servicio</h4>
+        <p>La migración es un servicio técnico. Vos definís tu precio. Varios afiliados ya lo están ofreciendo a sus propios clientes.</p>
+      </div>
+      <div class="network-card reveal">
+        <div class="network-card-icon">🛠️</div>
+        <h4>Formación y herramientas</h4>
+        <p>Acceso a materiales actualizados, recursos de migración y soporte del equipo de Afiliados de Tiendanube.</p>
+      </div>
+      <div class="network-card reveal">
+        <div class="network-card-icon">📈</div>
+        <h4>Comisión por activación</h4>
+        <p>Además del servicio técnico, seguís ganando tu comisión de afiliado por cada merchant que crea su cuenta con tu link y activa su plan en Tiendanube.</p>
+      </div>
+    </div>
+
+    <div class="network-cta-box reveal">
+      <h3>¿Querés ser especialista en migración?</h3>
+      <p>Esta es la primera versión del programa. Estamos diseñando la red con input de afiliados como vos. Si querés ser parte, anotate.</p>
+      <a href="mailto:celeste.condoleo@tiendanube.com?subject=Quiero%20ser%20especialista%20en%20migración" class="btn-white">
+        Me interesa →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p><strong>Comunidad Tiendanube Afiliados</strong> · Material interno</p>
+  <p style="margin-top: 8px;">¿Tenés preguntas? Escribinos a <a href="mailto:afiliados_ar@tiendanube.com" style="color: rgba(255,255,255,0.7);">afiliados_ar@tiendanube.com</a></p>
+</footer>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Objection accordion
+  function toggleObjection(card) {
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.objection-card.open').forEach(c => c.classList.remove('open'));
+    if (!isOpen) card.classList.add('open');
+  }
+</script>
+
+</body>
+</html>
