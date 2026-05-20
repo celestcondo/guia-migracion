@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guía de Migración Shopify → Tiendanube · Afiliados</title>
+<title>Guía de Migración · Squad Competidores · Afiliados Tiendanube</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
 <style>
@@ -762,9 +762,14 @@
 
   /* ── RED DE ESPECIALISTAS ── */
   .network-section {
-    background: var(--blue-bg);
+    background: var(--blue-dark);
     padding: 96px 32px;
   }
+
+  .network-inner .section-title { color: var(--white); }
+  .network-inner .section-label { color: var(--sky); }
+  .network-inner .section-label::before { background: var(--sky); }
+  .network-inner .section-sub { color: rgba(255,255,255,0.55); }
 
   .network-inner {
     max-width: 1080px;
@@ -859,6 +864,138 @@
   }
 
   .btn-white:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+  /* ── OFFER CARDS ── */
+  .offer-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 48px 0 40px;
+    max-width: 760px;
+  }
+
+  .offer-card {
+    position: relative;
+    border-radius: 24px;
+    padding: 36px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .offer-card--monthly {
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(255,255,255,0.12);
+  }
+
+  .offer-card--annual {
+    background: linear-gradient(135deg, rgba(0,80,195,0.5) 0%, rgba(0,180,230,0.2) 100%);
+    border: 1.5px solid rgba(0,180,230,0.4);
+    box-shadow: 0 0 40px rgba(0,180,230,0.12);
+  }
+
+  .offer-card-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #00b4e6, #0050c3);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 4px 14px;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+  }
+
+  .offer-card-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .offer-card-discount {
+    font-size: 64px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .offer-card-discount span {
+    font-size: 32px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .offer-card-desc {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.4;
+  }
+
+  .offer-card-detail {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+
+  /* ── OFFER HOW-IT-WORKS ── */
+  .offer-how {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 760px;
+    margin-bottom: 40px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 24px 28px;
+    flex-wrap: wrap;
+  }
+
+  .offer-how-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    flex: 1;
+    min-width: 180px;
+  }
+
+  .offer-how-num {
+    width: 28px;
+    height: 28px;
+    background: var(--blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+
+  .offer-how-arrow {
+    color: rgba(255,255,255,0.2);
+    font-size: 18px;
+    font-weight: 300;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .offer-cards { grid-template-columns: 1fr; }
+    .offer-how { flex-direction: column; align-items: flex-start; }
+    .offer-how-arrow { display: none; }
+  }
 
   /* ── QUICK REFERENCE ── */
   .quick-ref {
@@ -968,7 +1105,119 @@
     .feature-highlight { padding: 28px; }
     .steps-grid::before { display: none; }
     .network-cta-box { padding: 32px 24px; }
+    .platform-cards { grid-template-columns: repeat(2, 1fr); max-width: 480px; }
+    .platform-switcher { gap: 8px; }
+    .platform-switcher-label { display: none; }
   }
+
+  /* ── PLATFORM CARDS (portada) ── */
+  .platform-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 48px;
+    max-width: 880px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .platform-card {
+    font-family: var(--font);
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 28px 20px 24px;
+    cursor: pointer;
+    transition: all 0.22s var(--ease);
+    text-align: center;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .platform-card:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+  }
+  .platform-card-name { font-size: 18px; font-weight: 800; color: var(--white); }
+  .platform-card-cta {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--blue-light);
+    opacity: 0.8;
+    transition: opacity 0.18s;
+  }
+  .platform-card:hover .platform-card-cta { opacity: 1; }
+
+  /* ── PLATFORM SWITCHER (inline, sobre comparativa) ── */
+  .platform-switcher {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .platform-switcher-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--grey-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  /* ── PLATFORM SELECTOR ── */
+  .platform-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .platform-selector-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.35);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+  }
+  .platform-tabs { display: flex; gap: 4px; }
+  .platform-tab {
+    font-family: var(--font);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--grey-lightest);
+    cursor: pointer;
+    transition: all 0.18s;
+    background: transparent;
+    color: var(--grey-light);
+  }
+  .platform-tab:hover { background: var(--grey-bg); color: var(--grey-text); border-color: #ccc; }
+  .platform-tab.active[data-platform="shopify"] { background: #f0f7e6; color: #3d6b1a; border-color: #96bf48; }
+  .platform-tab.active[data-platform="woocommerce"] { background: #f3eeff; color: #5b2d8e; border-color: #7f54b3; }
+  .platform-tab.active[data-platform="empretienda"] { background: #edfbf0; color: #1f6b33; border-color: #3db256; }
+  .platform-tab.active[data-platform="tiendanegocio"] { background: #f3eeff; color: #5b2d8e; border-color: #8b5cf6; }
+
+  .tab-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 6px;
+    flex-shrink: 0;
+    vertical-align: middle;
+    opacity: 0.35;
+    transition: opacity 0.2s;
+  }
+  .platform-tab.active .tab-dot { opacity: 1; }
+  .td--shopify     { background: #96bf48; }
+  .td--woo         { background: #7f54b3; }
+  .td--empretienda { background: #3db256; }
+  .td--tn          { background: #8b5cf6; }
 </style>
 </head>
 <body>
@@ -991,49 +1240,59 @@
   <span class="nav-badge">Comunidad Tiendanube Afiliados</span>
 </nav>
 
-<!-- HERO -->
+<!-- HERO / PORTADA -->
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">
       <span></span>
-      Guía de Migración · Shopify → Tiendanube
+      Guía de Migración · Comunidad Tiendanube Afiliados
     </div>
     <h1>Tu próxima gran<br>oportunidad:<br><span class="accent">la migración</span></h1>
     <p class="hero-sub">
-      Muchos de tus clientes ya venden en Shopify y están pagando en dólares sin soporte local. Esta guía te da todos los argumentos y herramientas para que des el paso con ellos.
+      El material completo para convertirte en especialista y cerrar más migraciones. Primero contanos de dónde viene tu cliente.
     </p>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num">22<span class="small">%</span></div>
-        <div class="hero-stat-label">De los clientes de Shopify que prueban Tiendanube se convierten en clientes pagos</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">180<span class="small">K</span></div>
-        <div class="hero-stat-label">Tiendas activas en toda Latinoamérica — la plataforma líder de la región</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">+40<span class="small">%</span></div>
-        <div class="hero-stat-label">Crecimiento real del ecosistema Tiendanube en 2025, por encima de la inflación</div>
-      </div>
+
+    <!-- PLATFORM CARDS -->
+    <div class="platform-cards">
+      <button class="platform-card" onclick="enterPlatform('shopify')">
+        <div class="platform-card-name">Shopify</div>
+        <div class="platform-card-cta">Ver guía ↓</div>
+      </button>
+      <button class="platform-card" onclick="enterPlatform('woocommerce')">
+        <div class="platform-card-name">WooCommerce</div>
+        <div class="platform-card-cta">Ver guía ↓</div>
+      </button>
+      <button class="platform-card" onclick="enterPlatform('empretienda')">
+        <div class="platform-card-name">Empretienda</div>
+        <div class="platform-card-cta">Ver guía ↓</div>
+      </button>
+      <button class="platform-card" onclick="enterPlatform('tiendanegocio')">
+        <div class="platform-card-name">Tienda Negocio</div>
+        <div class="platform-card-cta">Ver guía ↓</div>
+      </button>
     </div>
-    <a href="#comparativa" class="hero-cta">
-      Ver la guía completa
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-  </div>
-  <div class="hero-scroll">
-    Scrolleá
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </div>
 </section>
 
 <!-- COMPARATIVA -->
 <section class="compare-section" id="comparativa">
   <div class="compare-inner">
+
+    <!-- INLINE SWITCHER -->
+    <div class="platform-switcher" id="platformSelector">
+      <span class="platform-switcher-label">Plataforma:</span>
+      <div class="platform-tabs">
+        <button class="platform-tab active" data-platform="shopify" onclick="switchPlatform('shopify')"><span class="tab-dot td--shopify"></span>Shopify</button>
+        <button class="platform-tab" data-platform="woocommerce" onclick="switchPlatform('woocommerce')"><span class="tab-dot td--woo"></span>WooCommerce</button>
+        <button class="platform-tab" data-platform="empretienda" onclick="switchPlatform('empretienda')"><span class="tab-dot td--empretienda"></span>Empretienda</button>
+        <button class="platform-tab" data-platform="tiendanegocio" onclick="switchPlatform('tiendanegocio')"><span class="tab-dot td--tn"></span>Tienda Negocio</button>
+      </div>
+    </div>
+
     <div class="section-label reveal">01 — La comparativa</div>
-    <h2 class="section-title reveal">Shopify vs Tiendanube:<br>el argumento que cierra la venta</h2>
-    <p class="section-sub reveal">Los números y razones concretas para hablar con tu cliente. No son opiniones: son datos.</p>
+    <h2 class="section-title reveal" id="compare-title">Shopify vs Tiendanube:<br>el argumento que cierra la venta</h2>
+    <p class="section-sub reveal" id="compare-sub">Los números y razones concretas para hablar con tu cliente. No son opiniones: son datos.</p>
 
     <div class="reveal" style="overflow-x: auto;">
       <table class="compare-table">
@@ -1041,15 +1300,15 @@
           <tr>
             <th></th>
             <th class="col-tn"><span class="col-tn-badge">Tiendanube</span></th>
-            <th class="col-shopify">Shopify</th>
+            <th class="col-shopify" id="compare-competitor-header">Shopify</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="compare-tbody">
           <tr>
             <td>Costo mensual</td>
             <td class="cell-tn">
               <span class="cell-win">Desde ~$25.000 ARS/mes en pesos</span><br>
-              Sin variación cambiaria. Sabés exactamente cuánto pagás cada mes.
+              Sin variación cambiaria. El cliente sabe exactamente cuánto paga cada mes.
               <br><span class="cell-tag tag-win">Predecible · sin sorpresas</span>
             </td>
             <td>
@@ -1061,7 +1320,7 @@
           <tr>
             <td>Medios de pago</td>
             <td class="cell-tn">
-              <span class="cell-win">Pago Nube nativo — ahorrás 21.6%</span><br>
+              <span class="cell-win">Pago Nube nativo — el cliente ahorra 21.6%</span><br>
               Mercado Pago, tarjetas, cuotas, todos los medios locales. Checkout 30% más rápido.
             </td>
             <td>
@@ -1131,7 +1390,7 @@
       <div class="tool-icon blue">⚡</div>
       <div class="tool-tagline">Migración de catálogo</div>
       <div class="tool-name">Automágico</div>
-      <p class="tool-desc">App oficial disponible en el App Store de Tiendanube. Migra el catálogo completo desde Shopify vía API, sin exportar CSVs ni copiar a mano.</p>
+      <p class="tool-desc">App oficial disponible en el App Store de Tiendanube. Migra el catálogo completo desde la plataforma de origen vía API, sin exportar CSVs ni copiar a mano.</p>
       <ul class="tool-features">
         <li>Productos, fotos y variaciones completas</li>
         <li>Inventario y precios actualizados</li>
@@ -1203,7 +1462,7 @@
       </div>
       <h3>Migración de catálogos a Google:<br>cero pérdida de performance</h3>
       <p>
-        Cuando un merchant migra desde Shopify, necesita transferir su feed de productos a Google para mantener sus campañas activas. Antes, ese proceso era manual y llevaba días. Ahora Tiendanube lo automatiza: el merchant migra y sus campañas de Google siguen corriendo sin interrupciones. Especialmente crítico para negocios con alta inversión en Google Ads.
+        Cuando un merchant migra de otra plataforma, necesita transferir su feed de productos a Google para mantener sus campañas activas. Antes, ese proceso era manual y llevaba días. Ahora Tiendanube lo automatiza: el merchant migra y sus campañas de Google siguen corriendo sin interrupciones. Especialmente crítico para negocios con alta inversión en Google Ads.
       </p>
       <br>
       <p style="font-size:13px; color: rgba(255,255,255,0.45);">Disponible para merchants que migran desde otra plataforma · Consultá con el equipo de Tiendanube para activarlo</p>
@@ -1218,7 +1477,7 @@
   <div style="background: var(--blue-bg); border: 1px solid var(--blue-clear); border-radius: var(--radius-lg); padding: 28px 32px; margin-top: 24px;" class="reveal">
     <div style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--blue); margin-bottom: 12px;">💡 La clave para no perder ventas durante la migración</div>
     <p style="font-size: 16px; color: var(--blue-dark); font-weight: 600; margin-bottom: 8px;">El cliente puede operar en las dos tiendas al mismo tiempo mientras migra.</p>
-    <p style="font-size: 14px; color: var(--grey-light); line-height: 1.6;">No es "cerrar Shopify y abrir Tiendanube". El proceso es gradual: se migra el catálogo, se configura la nueva tienda, se prueba que todo funciona, y recién ahí se redirige el dominio. Cero pérdida de ventas, cero interrupciones.</p>
+    <p style="font-size: 14px; color: var(--grey-light); line-height: 1.6;">No es "cerrar la plataforma anterior y abrir Tiendanube". El proceso es gradual: se migra el catálogo, se configura la nueva tienda, se prueba que todo funciona, y recién ahí se redirige el dominio. Cero pérdida de ventas, cero interrupciones.</p>
   </div>
 </section>
 
@@ -1229,7 +1488,7 @@
     <h2 class="section-title reveal">Las 4 objeciones más frecuentes<br>(y cómo responderlas)</h2>
     <p class="section-sub reveal">Basado en las respuestas reales de afiliados que ya hicieron migraciones. Tené estas respuestas listas.</p>
 
-    <div class="objections-grid">
+    <div class="objections-grid" id="objections-grid">
 
       <div class="objection-card reveal" onclick="toggleObjection(this)">
         <button class="objection-trigger">
@@ -1263,7 +1522,7 @@
         <div class="objection-body">
           <p class="objection-what">"¿Y si algo sale mal durante la migración? ¿Pierdo ventas?"</p>
           <p class="objection-script">
-            No perdés nada porque el proceso es <strong>en paralelo</strong>. Las dos tiendas existen al mismo tiempo. Vos migrás el catálogo, configurás la nueva tienda, la probás al 100%, y recién cuando estás seguro redirigís el dominio. Shopify sigue activa mientras tanto. LitExtension hasta migra el historial de órdenes y los datos de clientes, así que nada se pierde.
+            No perdés nada porque el proceso es <strong>en paralelo</strong>. Las dos tiendas existen al mismo tiempo. Vos migrás el catálogo, configurás la nueva tienda, la probás al 100%, y recién cuando estás seguro redirigís el dominio. La plataforma anterior sigue activa mientras tanto. LitExtension hasta migra el historial de órdenes y los datos de clientes, así que nada se pierde.
           </p>
           <div class="objection-tip">Caso real: CeCe Piume migró de Empretienda en un día y no perdió ni una venta. El proceso es más rápido y seguro de lo que parece.</div>
         </div>
@@ -1322,7 +1581,7 @@
       <div class="step-item reveal">
         <div class="step-num">1</div>
         <div class="step-title">Crear la cuenta en Tiendanube</div>
-        <p class="step-desc">Tu cliente abre su cuenta con tu link de afiliado. La tienda de Shopify sigue activa: no se cierra nada todavía.</p>
+        <p class="step-desc">Tu cliente abre su cuenta con tu link de afiliado. La tienda anterior sigue activa: no se cierra nada todavía.</p>
       </div>
       <div class="step-item reveal">
         <div class="step-num">2</div>
@@ -1348,46 +1607,51 @@
   </div>
 </section>
 
-<!-- RED DE ESPECIALISTAS -->
+<!-- BENEFICIO AFILIADO -->
 <section class="network-section" id="red">
   <div class="network-inner">
     <div class="section-label reveal">05 — La oportunidad</div>
-    <h2 class="section-title reveal">Sé de los primeros en la<br>red de especialistas en migración</h2>
-    <p class="section-sub reveal">Estamos armando una red de afiliados expertos en migración. La idea: que los afiliados que dominen este proceso puedan ofrecerlo como servicio a sus propios clientes. Todavía estamos definiendo los detalles — y queremos hacerlo con tu input.</p>
+    <h2 class="section-title reveal">El beneficio exclusivo<br>que vos le ofrecés al cliente</h2>
+    <p class="section-sub reveal">Además de la migración, tenés algo concreto para cerrar la propuesta: un descuento real que solo llega a través de tu link de afiliado. Así gana el cliente, y ganás vos.</p>
 
-    <div class="network-grid">
-      <div class="network-card reveal">
-        <div class="network-card-icon">🎯</div>
-        <h4>Un servicio concreto para ofrecer</h4>
-        <p>La migración técnica es algo que tus clientes necesitan y que muy pocos afiliados saben hacer. Dominarlo te diferencia.</p>
+    <div class="offer-cards reveal">
+      <div class="offer-card offer-card--monthly">
+        <div class="offer-card-label">Plan mensual</div>
+        <div class="offer-card-discount">25% <span>off</span></div>
+        <div class="offer-card-desc">en el primer pago de cualquier plan pago</div>
+        <div class="offer-card-detail">El cliente elige el plan que mejor le queda, paga el primer mes con 25% de descuento, y después sigue al precio normal.</div>
       </div>
-      <div class="network-card reveal">
-        <div class="network-card-icon">💰</div>
-        <h4>Potencial de ingreso adicional</h4>
-        <p>La migración es un servicio técnico que podés cobrar por separado, además de tu comisión de afiliado habitual.</p>
+      <div class="offer-card offer-card--annual">
+        <div class="offer-card-badge">✨ Mejor oferta</div>
+        <div class="offer-card-label">Plan anual</div>
+        <div class="offer-card-discount">50% <span>off</span></div>
+        <div class="offer-card-desc">en el primer pago de un plan anual</div>
+        <div class="offer-card-detail">Para clientes que quieren comprometerse desde el inicio. Máximo ahorro, máximo argumento de cierre.</div>
       </div>
-      <div class="network-card reveal">
-        <div class="network-card-icon">🛠️</div>
-        <h4>Materiales y acompañamiento</h4>
-        <p>Acceso a materiales actualizados, recursos de migración y soporte directo del equipo de Afiliados de Tiendanube.</p>
+    </div>
+
+    <div class="offer-how reveal">
+      <div class="offer-how-step">
+        <div class="offer-how-num">1</div>
+        <div>Compartís tu link de afiliado con el cliente</div>
       </div>
-      <div class="network-card reveal">
-        <div class="network-card-icon">📈</div>
-        <h4>Comisión por activación</h4>
-        <p>Por cada merchant que crea su cuenta con tu link y activa un plan pago, seguís ganando tu comisión de afiliado habitual.</p>
+      <div class="offer-how-arrow">→</div>
+      <div class="offer-how-step">
+        <div class="offer-how-num">2</div>
+        <div>El cliente crea su cuenta y activa un plan pago</div>
+      </div>
+      <div class="offer-how-arrow">→</div>
+      <div class="offer-how-step">
+        <div class="offer-how-num">3</div>
+        <div>El cliente obtiene el descuento — vos ganás tu comisión</div>
       </div>
     </div>
 
     <div class="network-cta-box reveal">
-      <h3>Completá tu perfil de especialista</h3>
-      <p>Estamos construyendo la red con los primeros afiliados interesados. Completá el formulario para que podamos acompañarte desde el inicio.</p>
-      <a href="LINK_FORMULARIO" target="_blank" class="btn-white" id="form-cta">
-        Completar formulario →
-      </a>
-      <div style="margin-top: 20px;">
-        <a href="LINK_GRUPO" target="_blank" id="group-cta" style="color: rgba(255,255,255,0.65); font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s;">
-          💬 Unite al grupo de especialistas
-        </a>
+      <h3>Tu link ya tiene el beneficio activado</h3>
+      <p>No hace falta hacer nada extra. Cuando el cliente abre su cuenta con tu link de afiliado, el descuento se aplica automáticamente al momento de elegir el plan.</p>
+      <div style="color: rgba(255,255,255,0.5); font-size: 14px;">
+        ¿Dudas? Escribinos a <a href="mailto:afiliados_ar@tiendanube.com" style="color: rgba(255,255,255,0.7); text-decoration: underline;">afiliados_ar@tiendanube.com</a>
       </div>
     </div>
   </div>
@@ -1400,17 +1664,119 @@
 </footer>
 
 <script>
-  // Progress bar
-  window.addEventListener('scroll', () => {
-    const doc = document.documentElement;
-    const scrollTop = doc.scrollTop || document.body.scrollTop;
-    const scrollHeight = doc.scrollHeight - doc.clientHeight;
-    const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-    document.getElementById('progressBar').style.width = pct + '%';
-  });
+  // ── PLATFORM DATA ──────────────────────────────────────────────────────────
+  const PLATFORMS = {
+    shopify: {
+      name: 'Shopify',
+      eyebrow: 'Guía de Migración · Shopify → Tiendanube',
+      sub: 'Muchos de tus clientes ya venden en Shopify y están pagando en dólares sin soporte local. Esta guía te da todos los argumentos y herramientas para que des el paso con ellos.',
+      stats: [
+        { num: '22', suffix: '%', label: 'De los clientes de Shopify que prueban Tiendanube se convierten en clientes pagos' },
+        { num: '87', suffix: '', label: 'NPs desde Shopify en H2 2025 — merchants de mayor ticket del ecosistema' },
+        { num: '+40', suffix: '%', label: 'Crecimiento real del ecosistema Tiendanube en 2025, por encima de la inflación' }
+      ],
+      compareTitle: 'Shopify vs Tiendanube:<br>el argumento que cierra la venta',
+      compareSub: 'Los números y razones concretas para hablar con tu cliente. No son opiniones: son datos.',
+      competitorHeader: 'Shopify',
+      rows: [
+        { label: 'Costo mensual', tn: '<span class="cell-win">Desde ~$25.000 ARS/mes en pesos</span><br>Sin variación cambiaria. El cliente sabe exactamente cuánto paga cada mes.<br><span class="cell-tag tag-win">Predecible · sin sorpresas</span>', comp: '<span class="cell-lose">Desde USD 20/mes + apps en USD</span><br>Con cada devaluación, el costo sube. El costo real puede duplicarse.<br><span class="cell-tag tag-risk">Sube con el dólar</span>' },
+        { label: 'Medios de pago', tn: '<span class="cell-win">Pago Nube nativo — el cliente ahorra 21.6%</span><br>Mercado Pago, tarjetas, cuotas, todos los medios locales. Checkout 30% más rápido.', comp: '<span class="cell-neutral">Requiere apps de terceros en AR</span><br>Sin checkout localizado ni cuotas automáticas argentinas.' },
+        { label: 'Logística y envíos', tn: '<span class="cell-win">Envío Nube nativo</span><br>OCA, Andreani, Mercado Envíos integrados. 16% más barato que el promedio del mercado.', comp: '<span class="cell-neutral">Sin integración nativa con correos AR</span><br>Necesita apps o desarrollos adicionales.' },
+        { label: 'Soporte', tn: '<span class="cell-win">Humano · 24/7 · en español</span><br>Entiende medios de pago locales, AFIP y logística argentina.', comp: '<span class="cell-lose">Chatbot global en inglés</span><br>Sin equipo dedicado para Argentina.' },
+        { label: 'Marketing incluido', tn: '<span class="cell-win">Marketing Nube incluido en el plan</span><br>Email, SMS, automatizaciones. $169M USD en ventas asistidas en 2025.', comp: '<span class="cell-neutral">Klaviyo y similares: USD adicionales</span><br>No incluidos. Cada herramienta de marketing se paga aparte.' },
+        { label: 'Apps e integraciones locales', tn: '<span class="cell-win">+200 apps · ERPs locales nativos</span><br>Xubio, Colppy, Mercado Libre, Facebook, Google — sin configuración compleja.', comp: '<span class="cell-neutral">+6.000 apps globales (muchas en USD)</span><br>Las integraciones argentinas requieren apps pagas o desarrollo custom.' }
+      ],
+      objections: [
+        { title: '"Ya tengo todo configurado, no me conviene moverme"', what: '"Me llevó meses configurar todo, no quiero empezar desde cero."', script: 'Entiendo, y es válido proteger el trabajo que ya hiciste. La buena noticia es que <strong>no empezás de cero</strong>. Con Automágico o LitExtension, tu catálogo completo — productos, fotos, variaciones, precios — migra automáticamente vía API. No es copiar y pegar, es una importación automática. Lo que ya armaste se mueve con vos.', tip: 'Las configuraciones de envío y pago son más simples en Tiendanube porque Pago Nube y Envío Nube ya están integrados — no hay que configurar APIs de terceros.' },
+        { title: '"Tengo miedo de perder datos o que se caigan mis ventas"', what: '"¿Y si algo sale mal durante la migración? ¿Pierdo ventas?"', script: 'No perdés nada porque el proceso es <strong>en paralelo</strong>. Las dos tiendas existen al mismo tiempo. Vos migrás el catálogo, configurás la nueva tienda, la probás al 100%, y recién cuando estás seguro redirigís el dominio. La plataforma anterior sigue activa mientras tanto. LitExtension hasta migra el historial de órdenes y los datos de clientes.', tip: 'El proceso es más rápido y seguro de lo que parece. En paralelo = cero riesgo de perder ventas.' },
+        { title: '"Shopify tiene muchas más apps e integraciones"', what: '"Shopify tiene miles de apps, Tiendanube parece limitado."', script: 'Shopify tiene más apps globales, sí. Pero el 80% de lo que necesitás para vender en Argentina está <strong>nativo en Tiendanube</strong>, sin apps de pago adicionales: Pago Nube, Envío Nube, Marketing Nube, integración con Mercado Libre, Facebook, Google, ERPs locales. En Shopify, cada una de esas integraciones es una app que se paga en dólares por separado.', tip: 'Preguntale qué apps usa en Shopify. Probablemente el 80% ya existe gratis o incluida en el plan de Tiendanube.' },
+        { title: '"¿No es complicado migrar? Parece mucho trabajo"', what: '"Suena complejo, no tengo tiempo para eso."', script: 'Tiene sentido que parezca complejo, pero no lo es. Con Automágico el catálogo se migra en minutos, automáticamente. Lo que lleva tiempo es la configuración inicial (diseño, dominio, medios de pago), pero eso es un proceso de pocas horas — no semanas. Como especialista en migración, podés hacer esto por tu cliente como un servicio.', tip: 'Podés ofrecerle al cliente hacer la migración por él, como un servicio técnico aparte. Es una oportunidad de ingreso adicional más allá de la comisión.' }
+      ]
+    },
+    woocommerce: {
+      name: 'WooCommerce',
+      eyebrow: 'Guía de Migración · WooCommerce → Tiendanube',
+      sub: 'WooCommerce es el segundo ecosistema de e-commerce más grande de Argentina con 25.800 tiendas activas. Tus clientes tienen control técnico, pero están perdiendo horas en mantenimiento. Esta guía te da los argumentos para que el cambio tenga sentido.',
+      stats: [
+        { num: '33', suffix: '%', label: 'CVR NP/Trial en H2 2025 — el más alto de los tres competidores. Los que prueban Tiendanube, se quedan.' },
+        { num: '25.8', suffix: 'K', label: 'Tiendas WooCommerce activas en Argentina — el segundo pool más grande del mercado.' },
+        { num: '200', suffix: '+', label: 'USD de costo inicial real de WooCommerce antes de vender el primer producto (hosting + plugins + dev).' }
+      ],
+      compareTitle: 'WooCommerce vs Tiendanube:<br>el argumento que cierra la venta',
+      compareSub: 'WooCommerce parece gratis. Tiendanube parece caro. Los números reales cuentan otra historia.',
+      competitorHeader: 'WooCommerce',
+      rows: [
+        { label: 'Costo real mensual', tn: '<span class="cell-win">Plan en ARS · todo incluido</span><br>Hosting, SSL, mantenimiento y soporte incluidos. Sin sorpresas técnicas.<br><span class="cell-tag tag-win">Sin infraestructura que administrar</span>', comp: '<span class="cell-lose">Hosting ~USD 15-30/mes + plugins + dev</span><br>WooCommerce es "gratis" pero el ecosistema suma. Un plugin premium puede costar USD 50-200/año.<br><span class="cell-tag tag-risk">Costo oculto que crece</span>' },
+        { label: 'Mantenimiento técnico', tn: '<span class="cell-win">El cliente no toca infraestructura</span><br>Actualizaciones, seguridad y uptime: responsabilidad de Tiendanube. Sin parches, sin crashes.', comp: '<span class="cell-lose">El merchant administra hosting y parches</span><br>Plugins desactualizados = vulnerabilidades. Cada actualización puede romper algo.' },
+        { label: 'Tiempo de setup', tn: '<span class="cell-win">Tienda lista en horas</span><br>Sin instalar WordPress, sin configurar hosting, sin plugins. El cliente empieza a vender en el día.', comp: '<span class="cell-neutral">Semanas de desarrollo</span><br>WordPress + WooCommerce + hosting + plugins + diseño + tests. Necesita saber o pagar a alguien.' },
+        { label: 'Medios de pago', tn: '<span class="cell-win">Pago Nube nativo — el cliente ahorra 21.6%</span><br>Todos los medios locales incluidos. Checkout 30% más rápido = más conversión.', comp: '<span class="cell-neutral">Configuración manual de pasarelas</span><br>Cada pasarela es un plugin diferente. Cuotas, billeteras y QR requieren integración aparte.' },
+        { label: 'Logística y envíos', tn: '<span class="cell-win">Envío Nube nativo — 16% más barato</span><br>OCA, Andreani, Mercado Envíos integrados sin configuración extra.', comp: '<span class="cell-neutral">Plugins de terceros para AR</span><br>Sin integración nativa con correos argentinos. Cada correo es un plugin que puede fallar.' },
+        { label: 'Soporte', tn: '<span class="cell-win">Humano · 24/7 · en español</span><br>El cliente tiene soporte que entiende AFIP, medios de pago locales y logística argentina.', comp: '<span class="cell-neutral">Comunidad global + freelancers</span><br>Foros en inglés, documentación técnica, o pagar un desarrollador por cada problema.' }
+      ],
+      objections: [
+        { title: '"WooCommerce es gratis, ¿por qué pagaría Tiendanube?"', what: '"Con WordPress y WooCommerce no pago nada. ¿Por qué gastar en una plataforma?"', script: 'WooCommerce en sí es gratis, pero la tienda no lo es. Necesitás hosting (mínimo USD 15-30/mes), SSL, un tema premium, plugins de pagos, envíos y marketing — cada uno con su costo y mantenimiento. Sumando todo, muchos terminan pagando más que cualquier plan de Tiendanube, y encima destinando horas semanales a mantener la infraestructura. <strong>El costo real de WooCommerce no es cero: es tiempo + plata + fricción técnica.</strong>', tip: 'Pedile que calcule cuánto paga en hosting + plugins + developer en el año. La mayoría se sorprende con el número.' },
+        { title: '"Con WooCommerce tengo control total del código"', what: '"Quiero poder personalizar todo. Con WordPress tengo control total."', script: 'Ese control tiene un precio: cada actualización de WordPress o WooCommerce puede romper un plugin. Cada plugin desactualizado es una vulnerabilidad de seguridad. Y cuando algo falla, sos vos (o tu dev) el que lo resuelve. En Tiendanube tenés control sobre lo que importa — tu tienda, tus productos, tu marca, tu diseño — sin depender de infraestructura que falle. <strong>¿Cuántas horas por semana le dedicás hoy a mantener la tienda en lugar de vender?</strong>', tip: 'Los merchants de WooCommerce con mayor CVR son los que se cansan del mantenimiento. Ese es el momento de entrada.' },
+        { title: '"Migrar todo el catálogo parece un trabajo enorme"', what: '"Tengo cientos de productos con variaciones y fotos. No puedo migrar eso a mano."', script: 'No hace falta hacerlo a mano. Automágico migra el catálogo completo desde WooCommerce vía API — productos, fotos, variaciones, precios e inventario — de forma automática. Y LitExtension permite migrar también el historial de órdenes y la base de clientes. <strong>No es exportar/importar CSVs: es una migración automatizada que tarda minutos.</strong>', tip: 'Mostralo en vivo si podés. Ver el proceso en acción elimina el 90% del miedo.' },
+        { title: '"Tengo mi sitio entero en WordPress, no solo la tienda"', what: '"Todo mi sitio está en WordPress: blog, páginas, landing pages. No puedo migrar solo la tienda."', script: 'Podés mantener tu WordPress para el contenido y usar Tiendanube solo para la tienda, conectados con el mismo dominio. Es una configuración que muchos merchants hacen. O, si querés simplificar, Tiendanube tiene páginas personalizadas, blog integrado y landing pages. Pero no es "todo o nada": podés arrancar con la tienda y decidir el resto después.', tip: 'El miedo al "todo o nada" es el freno más común en WooCommerce. Aclarar que pueden arrancar con la tienda sola desbloquea la conversación.' }
+      ]
+    },
+    empretienda: {
+      name: 'Empretienda',
+      eyebrow: 'Guía de Migración · Empretienda → Tiendanube',
+      sub: 'Empretienda es la plataforma de entrada para emprendedores argentinos. Tus clientes que ya venden ahí están llegando a un techo de funcionalidad. Esta guía te da los argumentos para mostrarles qué hay del otro lado.',
+      stats: [
+        { num: '284', suffix: '', label: 'NPs desde Empretienda en H2 2025 — el mayor volumen absoluto de los tres competidores.' },
+        { num: '6.2', suffix: 'K', label: 'Tiendas Empretienda activas en Argentina — pool acotado con dolores claros y definidos.' },
+        { num: '66', suffix: '%', label: 'De los migradores factura menos de 1M ARS. Emprendedores que quieren crecer — el timing ideal.' }
+      ],
+      compareTitle: 'Empretienda vs Tiendanube:<br>el argumento que cierra la venta',
+      compareSub: 'Empretienda es más barata. Tiendanube es más completa. La pregunta clave: ¿tu cliente quiere sobrevivir o quiere crecer?',
+      competitorHeader: 'Empretienda',
+      rows: [
+        { label: 'Plantillas de diseño', tn: '<span class="cell-win">65+ plantillas premium</span><br>Diseños profesionales, personalizables, con mobile optimizado.<br><span class="cell-tag tag-win">Marca sólida desde el día uno</span>', comp: '<span class="cell-lose">10 plantillas básicas</span><br>Pocas opciones de personalización. Muchas tiendas se ven iguales.<br><span class="cell-tag tag-risk">Techo de diferenciación</span>' },
+        { label: 'Herramientas de marketing', tn: '<span class="cell-win">Marketing Nube incluido en el plan</span><br>Email, SMS, carrito abandonado, automatizaciones. $169M USD en ventas asistidas en 2025.', comp: '<span class="cell-lose">Sin automatizaciones nativas</span><br>Sin carrito abandonado, sin email de bienvenida, sin segmentación de clientes.' },
+        { label: 'Medios de pago', tn: '<span class="cell-win">Pago Nube nativo — el cliente ahorra 21.6%</span><br>Todos los medios locales. Checkout 30% más rápido = más conversión.', comp: '<span class="cell-neutral">Procesadores externos</span><br>Sin checkout propio optimizado. Cada pasarela requiere configuración aparte.' },
+        { label: 'Logística y envíos', tn: '<span class="cell-win">Envío Nube nativo</span><br>OCA, Andreani, Mercado Envíos integrados. 16% más barato que el promedio del mercado.', comp: '<span class="cell-neutral">Sin integración nativa con correos AR</span><br>Los envíos se gestionan por fuera de la plataforma.' },
+        { label: 'Apps e integraciones', tn: '<span class="cell-win">+200 apps · ERPs locales nativos</span><br>Xubio, Colppy, Mercado Libre, Facebook, Google, Chat Nube (61.3% resolución autónoma).', comp: '<span class="cell-lose">Ecosistema limitado</span><br>Pocas integraciones. Sin ERPs locales ni herramientas avanzadas de crecimiento.' },
+        { label: 'Soporte', tn: '<span class="cell-win">Humano · 24/7 · en español</span><br>Entiende AFIP, cuotas, Mercado Libre y logística argentina.', comp: '<span class="cell-neutral">Soporte básico</span><br>Estructura más pequeña, sin equipo dedicado de crecimiento para el merchant.' }
+      ],
+      objections: [
+        { title: '"Empretienda es más barata"', what: '"El plan de Tiendanube cuesta el triple que Empretienda. No lo puedo pagar."', script: 'Empretienda cuesta $8.500/mes y Tiendanube desde $25.000. La diferencia parece grande — hasta que la ponés en contexto. Con Pago Nube el cliente ahorra 21.6% en comisiones de procesamiento. Con Envío Nube, 16% en logística. Con Marketing Nube incluido, no pagás Klaviyo ni similares. <strong>Para una tienda con ventas regulares, esos ahorros suelen cubrir la diferencia en el primer mes.</strong>', tip: 'Calculá juntos el costo real con los ahorros de Pago Nube y Envío Nube. El número suele sorprender.' },
+        { title: '"Ya me acostumbré a Empretienda, me da miedo cambiar"', what: '"Ya sé cómo funciona todo. Cambiar me va a llevar mucho tiempo."', script: 'Tiene sentido: cambiar lleva energía. Pero Tiendanube tiene una interfaz igual de intuitiva — y Automágico migra el catálogo completo (productos, fotos, variaciones) en minutos vía API. No es empezar de cero: es llevar lo que ya armaste a una plataforma con más herramientas. <strong>El tiempo de adaptación suele ser de un día, no de semanas.</strong>', tip: 'El mayor freno en Empretienda es el cambio en sí, no el costo técnico. Mostrar lo fácil que es la migración desbloquea la conversación.' },
+        { title: '"Estoy vendiendo bien, ¿para qué cambiar?"', what: '"Las cosas me van bien en Empretienda. No veo por qué moverme."', script: 'Es la mejor posición para migrar: con ventas activas, catálogo armado y clientes reales. Empretienda es una plataforma de arranque — cuando empezás a vender bien, empezás a necesitar lo que Empretienda no tiene: carrito abandonado, automatizaciones de email, mejores integraciones de envío, análisis detallados. <strong>Los que migran cuando ya están vendiendo crecen más rápido que los que esperan a que les duela.</strong>', tip: '"Me va bien" es una señal de timing perfecto, no un motivo para no migrar.' },
+        { title: '"¿Puedo migrar el catálogo sin perder nada?"', what: '"Tengo muchos productos con fotos y variaciones. ¿Se migran todos?"', script: 'Sí, todo. Automágico migra productos, fotos, variaciones, precios e inventario desde Empretienda vía API. No es exportar un Excel ni copiar a mano — es una migración automática que tarda minutos. Y mientras migrás, tu tienda de Empretienda sigue activa: no perdés ni una venta en el proceso.', tip: 'Mostrá el proceso de Automágico en vivo. La velocidad es el argumento que más convence en este caso.' }
+      ]
+    },
+    tiendanegocio: {
+      name: 'Tienda Negocio',
+      eyebrow: 'Guía de Migración · Tienda Negocio → Tiendanube',
+      sub: 'Tienda Negocio gana terreno en TikTok por precio bajo, pero sus números reales cuentan otra historia. Esta guía te da los argumentos para mostrarle al cliente qué hay detrás del ruido.',
+      stats: [
+        { num: '3–5K', suffix: '', label: 'Tiendas activas reales según StoreLeads — vs. 40.000 que declaran ellos (gap de 8 a 13x)' },
+        { num: '57', suffix: '%', label: 'De sus propios clientes que dejaron Tiendanube se fueron por precio — la mayoría sin haber vendido nunca' },
+        { num: '10+', suffix: '', label: 'Años de Tiendanube en el mercado vs una plataforma nueva sin track record verificable' }
+      ],
+      compareTitle: 'Tienda Negocio vs Tiendanube:<br>el argumento que cierra la venta',
+      compareSub: 'Tienda Negocio se vende como "Tiendanube pero más barata". Los números reales muestran qué se pierde en esa diferencia de precio.',
+      competitorHeader: 'Tienda Negocio',
+      rows: [
+        { label: 'Costo mensual', tn: '<span class="cell-win">Desde ~$25.000 ARS/mes en pesos</span><br>Todo incluido: hosting, SSL, soporte, integraciones nativas. El cliente sabe exactamente cuánto paga.<br><span class="cell-tag tag-win">Plataforma líder · 65K tiendas activas</span>', comp: '<span class="cell-neutral">Desde ~$10.000 ARS/mes</span><br>Precio más bajo, pero sin Pago Nube, Envío Nube ni Marketing Nube incluidos. El costo real con herramientas equivalentes es similar.<br><span class="cell-tag tag-risk">Sin ecosistema de crecimiento</span>' },
+        { label: 'Herramientas nativas', tn: '<span class="cell-win">Pago Nube + Envío Nube + Marketing Nube</span><br>El cliente ahorra 21.6% en pagos, 16% en envíos, y tiene carrito abandonado, email y SMS incluidos en el plan.', comp: '<span class="cell-lose">Sin productos nativos de pago, envío ni marketing</span><br>Cada herramienta requiere una integración externa o no existe. El cliente escala solo si arma todo por su cuenta.' },
+        { label: 'Integraciones y apps', tn: '<span class="cell-win">+200 apps · ERPs locales nativos</span><br>Xubio, Colppy, Mercado Libre, Facebook, Google Shopping, Chat Nube. Ecosistema construido durante 10 años.', comp: '<span class="cell-lose">Ecosistema limitado y sin track record</span><br>Sin integraciones avanzadas verificadas. Sin ERPs locales. El cliente crece y la plataforma no tiene con qué acompañarlo.' },
+        { label: 'Confianza y trayectoria', tn: '<span class="cell-win">+65K tiendas activas · +10 años en el mercado</span><br>Dato verificable por StoreLeads. La plataforma líder de e-commerce D2C en Argentina.', comp: '<span class="cell-lose">3.000–5.000 tiendas activas reales</span><br>Declaran 40.000 tiendas — StoreLeads registra entre 3K y 5K. Un gap de 8 a 13 veces que vale la pena mostrar.' },
+        { label: 'Soporte', tn: '<span class="cell-win">Humano · 24/7 · en español</span><br>Equipo dedicado que entiende AFIP, medios de pago locales y logística argentina.', comp: '<span class="cell-neutral">Equipo pequeño · estructura limitada</span><br>Al tener pocos clientes, la atención puede ser más personal. Pero sin escala ni track record de soporte sostenido.' },
+        { label: 'Escalabilidad', tn: '<span class="cell-win">Construida para crecer</span><br>Planes desde Esencial hasta Escala. El cliente arranca y escala sin cambiar de plataforma. +40% crecimiento real del ecosistema en 2025.', comp: '<span class="cell-lose">Techo rápido</span><br>Sin las herramientas que el negocio necesita cuando empieza a vender bien. El cliente migra dos veces si elige mal al principio.' }
+      ],
+      objections: [
+        { title: '"Tienda Negocio es mucho más barata"', what: '"Con Tienda Negocio pago $10.000 ARS y con Tiendanube $25.000. La diferencia es grande."', script: 'La diferencia es real: unos $15.000 ARS por mes. Pero Tiendanube incluye Pago Nube — el cliente ahorra 21.6% en comisiones de procesamiento de pagos. En una tienda con ventas regulares, ese ahorro solo suele cubrir la diferencia. Más Envío Nube (16% más barato en logística) y Marketing Nube (carrito abandonado, email, SMS) incluidos en el plan. <strong>Con herramientas equivalentes, el costo real termina siendo muy similar — y el ecosistema de Tiendanube es incomparablemente más completo.</strong>', tip: 'Calculá juntos cuánto paga hoy en procesamiento de pagos. El ahorro de Pago Nube suele ser el argumento que cierra esta objeción en el acto.' },
+        { title: '"Vi en TikTok que Tienda Negocio es mejor para empezar"', what: '"En TikTok todos dicen que es más simple y más barata que Tiendanube."', script: 'Tienda Negocio hace mucho ruido en TikTok, sí. Pero mirá los números reales: StoreLeads —la herramienta que mide tiendas activas a nivel mundial— registra entre 3.000 y 5.000 tiendas activas en Tienda Negocio. Ellos declaran 40.000. Un gap de 8 a 13 veces. Tiendanube tiene 65.000 tiendas activas verificadas y 10 años de trayectoria. <strong>El ruido en TikTok no equivale a tracción real.</strong>', tip: 'Los influencers que recomiendan Tienda Negocio muchas veces lo hacen por comisiones de afiliado, no por experiencia. Mostrar los datos de StoreLeads suele ser el argumento más contundente.' },
+        { title: '"Tienen 30 días de prueba gratis, Tiendanube solo 7"', what: '"Prefiero probar más tiempo antes de pagar."', script: 'El período de prueba más largo suena atractivo, pero el objetivo no es probar más tiempo — es empezar a vender lo antes posible. Con Automágico el catálogo del cliente migra en minutos vía API. La tienda se configura en el día. <strong>Con 7 días alcanzan para probar, migrar y arrancar a vender — mucho antes de que venza cualquier período de prueba.</strong>', tip: 'La objeción de los 30 días es de ansiedad, no de costo. La solución es mostrar que el setup es rápido, no extender el plazo.' },
+        { title: '"¿Y si Tienda Negocio mejora con el tiempo?"', what: '"Es nueva, pero puede crecer y volverse más completa."', script: 'Puede mejorar, sí. Pero mientras tanto el cliente está corriendo su negocio. Construir un ecosistema de +200 integraciones, Pago Nube, Envío Nube, Marketing Nube y Chat Nube lleva años — Tiendanube lleva 10 construyéndolo. <strong>El cliente no puede pausar su crecimiento para esperar que una plataforma nueva lo alcance.</strong> El mejor momento para elegir bien es antes de que el negocio crezca y migrar se vuelva más complejo.', tip: 'Los merchants que eligen bien desde el principio no tienen que migrar dos veces. Ese costo de oportunidad es el argumento más fuerte.' }
+      ]
+    }
+  };
 
-  // Reveal on scroll
-  const reveals = document.querySelectorAll('.reveal');
+  // ── SCROLL REVEAL ──────────────────────────────────────────────────────────
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
@@ -1419,13 +1785,94 @@
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(el => observer.observe(el));
 
-  // Objection accordion
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── PROGRESS BAR ──────────────────────────────────────────────────────────
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+  });
+
+  // ── OBJECTION ACCORDION ───────────────────────────────────────────────────
   function toggleObjection(card) {
     const isOpen = card.classList.contains('open');
     document.querySelectorAll('.objection-card.open').forEach(c => c.classList.remove('open'));
     if (!isOpen) card.classList.add('open');
+  }
+
+  // ── PLATFORM SWITCHER ─────────────────────────────────────────────────────
+  function switchPlatform(slug) {
+    const p = PLATFORMS[slug];
+    if (!p) return;
+
+    // Update active tab button
+    document.querySelectorAll('.platform-tab').forEach(tab => {
+      tab.classList.toggle('active', tab.dataset.platform === slug);
+    });
+
+    // Compare title + sub
+    document.getElementById('compare-title').innerHTML = p.compareTitle;
+    document.getElementById('compare-sub').textContent = p.compareSub;
+
+    // Competitor column header
+    document.getElementById('compare-competitor-header').textContent = p.competitorHeader;
+
+    // Compare table rows
+    document.getElementById('compare-tbody').innerHTML = p.rows.map(r =>
+      '<tr>' +
+        '<td>' + r.label + '</td>' +
+        '<td class="cell-tn">' + r.tn + '</td>' +
+        '<td>' + r.comp + '</td>' +
+      '</tr>'
+    ).join('');
+
+    // Objections
+    document.getElementById('objections-grid').innerHTML = p.objections.map((o, i) =>
+      '<div class="objection-card reveal" onclick="toggleObjection(this)">' +
+        '<button class="objection-trigger">' +
+          '<span class="objection-quote">' +
+            '<span class="objection-num">' + (i + 1) + '</span>' +
+            o.title +
+          '</span>' +
+          '<svg class="objection-icon" viewBox="0 0 20 20" fill="none">' +
+            '<path d="M10 4v12M4 10h12" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>' +
+          '</svg>' +
+        '</button>' +
+        '<div class="objection-body">' +
+          '<p class="objection-what">' + o.what + '</p>' +
+          '<p class="objection-script">' + o.script + '</p>' +
+          '<div class="objection-tip">' + o.tip + '</div>' +
+        '</div>' +
+      '</div>'
+    ).join('');
+
+    // Re-observe new reveal elements
+    document.querySelectorAll('#objections-grid .reveal').forEach(el => observer.observe(el));
+
+    // Update URL param
+    const url = new URL(window.location);
+    url.searchParams.set('vs', slug);
+    window.history.replaceState({}, '', url);
+  }
+
+  // ── ENTER FROM PORTADA (selección inicial + scroll) ──────────────────────
+  function enterPlatform(slug) {
+    switchPlatform(slug);
+    document.getElementById('comparativa').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ── INIT from URL param ───────────────────────────────────────────────────
+  const initPlatform = new URLSearchParams(window.location.search).get('vs') || null;
+  if (initPlatform && PLATFORMS[initPlatform]) {
+    switchPlatform(initPlatform);
+    // Si viene con ?vs= en la URL, saltear la portada y ir directo al contenido
+    setTimeout(() => document.getElementById('comparativa').scrollIntoView({ behavior: 'auto', block: 'start' }), 50);
+  } else {
+    switchPlatform('shopify'); // cargar datos de Shopify por defecto sin hacer scroll
   }
 </script>
 
