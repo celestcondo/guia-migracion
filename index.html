@@ -1202,6 +1202,118 @@
   .platform-tab.active[data-platform="empretienda"] { background: #edfbf0; color: #1f6b33; border-color: #3db256; }
   .platform-tab.active[data-platform="tiendanegocio"] { background: #f3eeff; color: #5b2d8e; border-color: #8b5cf6; }
 
+  /* ── HERO NOTICE (para afiliados) ── */
+  .hero-notice {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    margin: 0 auto 40px;
+    max-width: 640px;
+    text-align: left;
+  }
+  .hero-notice-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .hero-notice-chip {
+    background: rgba(0,180,230,0.2);
+    border: 1px solid rgba(0,180,230,0.35);
+    color: var(--sky);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .hero-notice-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.4;
+  }
+  .hero-notice-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .hero-notice-tag {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+  }
+
+  /* ── SHARE CLIENT BOX ── */
+  .share-client-box {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: var(--blue-dark);
+    border: 1px solid rgba(0,80,195,0.35);
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow-soft);
+  }
+  .share-client-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+  }
+  .share-client-content {
+    flex: 1;
+    min-width: 200px;
+  }
+  .share-client-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .share-client-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.5;
+  }
+  .btn-share-client {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    color: var(--blue-dark);
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 13px 24px;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .btn-share-client:hover { background: var(--blue-light); transform: translateY(-1px); }
+  @media (max-width: 640px) {
+    .share-client-box { flex-direction: column; align-items: flex-start; }
+    .btn-share-client { width: 100%; justify-content: center; }
+  }
+
   .tab-dot {
     display: inline-block;
     width: 7px;
@@ -1252,6 +1364,20 @@
     <p class="hero-sub">
       El material completo para convertirte en especialista y cerrar más migraciones. Primero contanos de dónde viene tu cliente.
     </p>
+
+    <!-- AVISO PARA AFILIADOS -->
+    <div class="hero-notice">
+      <div class="hero-notice-row">
+        <span class="hero-notice-chip">📋 Para afiliados</span>
+        <span class="hero-notice-text">Esta guía está pensada para vos, no para compartir directamente con tu cliente emprendedor.</span>
+      </div>
+      <div class="hero-notice-row">
+        <span class="hero-notice-label">Usala en:</span>
+        <span class="hero-notice-tag">💬 Reuniones con clientes</span>
+        <span class="hero-notice-tag">🎓 Cursos y mentorías</span>
+        <span class="hero-notice-tag">📱 Contenido para tu comunidad</span>
+      </div>
+    </div>
 
     <!-- PLATFORM CARDS -->
     <div class="platform-cards">
@@ -1375,6 +1501,19 @@
         </tbody>
       </table>
     </div>
+
+    <!-- COMPARTIR CON CLIENTE -->
+    <div class="share-client-box reveal">
+      <div class="share-client-icon">📤</div>
+      <div class="share-client-content">
+        <div class="share-client-title">¿Hablando con un cliente que está en esta plataforma?</div>
+        <div class="share-client-sub">Tenemos un resumen de una página pensado especialmente para el emprendedor: claro, sin tecnicismos, con los argumentos clave y el descuento exclusivo. Ideal para compartir por WhatsApp o en una reunión.</div>
+      </div>
+      <a href="infografia-migracion-shopify.html" target="_blank" class="btn-share-client">
+        📤 Compartí con tu cliente
+      </a>
+    </div>
+
   </div>
 </section>
 
