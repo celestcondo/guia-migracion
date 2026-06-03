@@ -1,0 +1,181 @@
+/* Nuvemshop Design System — Type & Color Tokens
+   Derived from Brand Design Guidelines v1.0 (Q4 2025)
+*/
+
+/* ── Fonts ─────────────────────────────────────────────── */
+@font-face { font-family: "Plus Jakarta Sans"; font-weight: 200; font-style: normal; src: url("fonts/PlusJakartaSans-ExtraLight.ttf") format("truetype"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-weight: 200; font-style: italic; src: url("fonts/PlusJakartaSans-ExtraLightItalic.ttf") format("truetype"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-weight: 300; font-style: normal; src: url("fonts/PlusJakartaSans-Light.ttf") format("truetype"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-weight: 300; font-style: italic; src: url("fonts/PlusJakartaSans-LightItalic.ttf") format("truetype"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-weight: 400; font-style: normal; src: url("fonts/PlusJakartaSans-Regular.ttf") format("truetype"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-weight: 400; font-style: italic; src: url("fonts/PlusJakartaSans-Italic.ttf") format("truetype"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-weight: 500; font-style: normal; src: url("fonts/PlusJakartaSans-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-weight: 500; font-style: italic; src: url("fonts/PlusJakartaSans-MediumItalic.ttf") format("truetype"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-weight: 600; font-style: normal; src: url("fonts/PlusJakartaSans-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-weight: 600; font-style: italic; src: url("fonts/PlusJakartaSans-SemiBoldItalic.ttf") format("truetype"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-weight: 700; font-style: normal; src: url("fonts/PlusJakartaSans-Bold.ttf") format("truetype"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-weight: 700; font-style: italic; src: url("fonts/PlusJakartaSans-BoldItalic.ttf") format("truetype"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-weight: 800; font-style: normal; src: url("fonts/PlusJakartaSans-ExtraBold.ttf") format("truetype"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-weight: 800; font-style: italic; src: url("fonts/PlusJakartaSans-ExtraBoldItalic.ttf") format("truetype"); }
+@font-face { font-family: "IvyPresto Display"; font-weight: 300; font-style: italic; src: url("fonts/IvyPrestoDisplay-LightItalic.otf") format("opentype"); }
+
+:root {
+  /* ── Brand colors — Main ─────────────────────────────── */
+  --ns-nimbus-blue: #0050C3;       /* rgb(0,80,195) — primary */
+  --ns-highlight-blue: #59A9FF;    /* rgb(89,169,255) — secondary */
+  --ns-pure-white: #FFFFFF;
+
+  /* ── Brand colors — Support ─────────────────────────── */
+  --ns-ocean-blue: #00298F;        /* rgb(0,41,143) */
+  --ns-sky-blue: #00B4E6;          /* rgb(0,180,230) */
+  --ns-clear-blue: #99D3FF;        /* rgb(153,211,255) */
+
+  /* Nimbus Night gradient stops — Nimbus Blue → Ocean Blue → Midnight Blue → Galaxy Blue */
+  --ns-nimbus-blue-stop: #0050C3;
+  --ns-ocean-blue-stop: #00298F;
+  --ns-midnight-blue: #080558;  /* rgb(8,5,88) */
+  --ns-galaxy-blue: #010B23;   /* rgb(1,11,35) — deepest stop */
+
+  /* Legacy aliases (kept for back-compat) */
+  --ns-nimbus-night-1: var(--ns-nimbus-blue-stop);
+  --ns-nimbus-night-2: var(--ns-ocean-blue-stop);
+  --ns-nimbus-night-3: var(--ns-midnight-blue);
+  --ns-nimbus-night-4: var(--ns-galaxy-blue);
+
+  /* ── Accent / auxiliary ─────────────────────────────── */
+  --ns-pink: #C3355D;              /* rgb(195,53,93) */
+  --ns-green: #00CD4B;             /* rgb(0,205,75) */
+  --ns-green-2: #0ACC59;           /* rgb(10,204,89) */
+  --ns-yellow: #F4DC18;            /* rgb(244,220,24) */
+  --ns-orange: #FF7A27;            /* rgb(255,122,39) */
+
+
+  /* ── Grayscale — Nimbus Gray (Nube Gray) ────────────── */
+  --ns-gray-40: #979BA1;           /* rgb(151,155,161) */
+  --ns-gray-20: #BDC0C6;           /* rgb(189,192,198) */
+  --ns-gray-10: #EFF1F4;           /* rgb(239,241,244) */
+  --ns-gray-60: #5C6167;           /* rgb(92,97,103) — support */
+  --ns-ink: #010B23;               /* Galaxy Blue — text on white */
+
+  /* ── Semantic surfaces ───────────────────────────────── */
+  --ns-bg: var(--ns-pure-white);
+  --ns-bg-brand: var(--ns-nimbus-blue);
+  --ns-surface: var(--ns-pure-white);
+  --ns-surface-alt: var(--ns-gray-10);
+  --ns-border: var(--ns-gray-20);
+  --ns-border-subtle: var(--ns-gray-10);
+
+  /* ── Semantic foreground ─────────────────────────────── */
+  --ns-fg: var(--ns-ink);
+  --ns-fg-muted: var(--ns-gray-60);
+  --ns-fg-subtle: var(--ns-gray-40);
+  --ns-fg-on-brand: var(--ns-pure-white);
+  --ns-fg-brand: var(--ns-nimbus-blue);
+  --ns-fg-accent: var(--ns-highlight-blue);
+
+  /* ── Gradient: Nimbus Night (signature radial) ───────── */
+  --ns-gradient-nimbus-night:
+    radial-gradient(
+      circle at 50% 0%,
+      var(--ns-nimbus-night-1) 0%,
+      var(--ns-nimbus-night-2) 30%,
+      var(--ns-nimbus-night-3) 65%,
+      var(--ns-nimbus-night-4) 100%
+    );
+  --ns-gradient-nimbus-night-soft:
+    radial-gradient(circle at 50% 40%, rgba(0,80,195,1) 0%, rgba(0,41,143,0.5) 50%, rgba(8,5,88,0) 100%),
+    radial-gradient(circle at 50% 0%, var(--ns-nimbus-night-1) 0%, var(--ns-nimbus-night-2) 30%, var(--ns-nimbus-night-3) 65%, var(--ns-nimbus-night-4) 100%);
+
+  /* ── Typography families ─────────────────────────────── */
+  --ns-font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --ns-font-display: "IvyPresto Display", "Plus Jakarta Sans", serif;
+
+  /* Letter-spacing & leading */
+  --ns-tracking-tight: -0.010em;
+  --ns-tracking-body:  -0.005em;
+  --ns-tracking-serif: -0.005em;
+
+  /* ── Type scale (absolute, for 1920×1080 brand canvas) ─ */
+  --ns-size-display-xxl: 180px;     /* Cover hero */
+  --ns-size-display-xl:  120px;     /* Big welcome */
+  --ns-size-display-l:   118px;     /* Serif italic headline */
+  --ns-size-display-m:   112px;     /* Section chapter */
+  --ns-size-display-s:    80px;     /* Messaging big body */
+  --ns-size-heading-xl:   60px;     /* Sub-heading / drivers */
+  --ns-size-heading-l:    45px;
+  --ns-size-heading-m:    30px;
+  --ns-size-heading-s:    23px;     /* Section eyebrow / title */
+  --ns-size-body-l:       18px;
+  --ns-size-body:         15px;     /* Default body */
+  --ns-size-body-s:       13px;
+  --ns-size-caption:      12px;     /* Footers / labels */
+  --ns-size-caption-xs:   11px;
+
+  /* Line heights (matched to Figma) */
+  --ns-lh-display: 1.02;
+  --ns-lh-serif: 1.03;
+  --ns-lh-heading: 1.23;
+  --ns-lh-body: 1.47;               /* 22 / 15 */
+  --ns-lh-body-l: 1.44;              /* 26 / 18 */
+
+  /* ── Radii & elevation ───────────────────────────────── */
+  --ns-radius-pill: 999px;
+  --ns-radius-xl: 40px;              /* Large white panel sheets */
+  --ns-radius-l: 24px;
+  --ns-radius-m: 16px;
+  --ns-radius-s: 12px;
+  --ns-radius-xs: 8px;
+
+  /* Shadows pulled from figma metadata */
+  --ns-shadow-soft: 0 8px 24px rgba(0, 21, 70, 0.03), 0 2px 6px rgba(89,169,255,0.13);
+  --ns-shadow-card: 0 18px 40px rgba(0, 21, 70, 0.08), 0 4px 10px rgba(89,169,255,0.15);
+  --ns-shadow-pop:  0 24px 60px rgba(0,0,0,0.25);
+  --ns-shadow-inner-white: inset 0 1px 0 rgba(255,255,255,0.3);
+
+  /* Spacing base (8pt) */
+  --ns-s-1: 4px;
+  --ns-s-2: 8px;
+  --ns-s-3: 12px;
+  --ns-s-4: 16px;
+  --ns-s-5: 24px;
+  --ns-s-6: 32px;
+  --ns-s-7: 48px;
+  --ns-s-8: 64px;
+  --ns-s-9: 96px;
+}
+
+/* ── Semantic element styles ──────────────────────────── */
+.ns-body { font-family: var(--ns-font-sans); font-size: var(--ns-size-body); line-height: var(--ns-lh-body); letter-spacing: var(--ns-tracking-body); color: var(--ns-fg); }
+
+.ns-h1, h1.ns { font-family: var(--ns-font-sans); font-weight: 700; font-size: var(--ns-size-display-m); line-height: var(--ns-lh-display); letter-spacing: var(--ns-tracking-tight); }
+.ns-h2, h2.ns { font-family: var(--ns-font-sans); font-weight: 700; font-size: var(--ns-size-display-s); line-height: var(--ns-lh-display); letter-spacing: var(--ns-tracking-tight); }
+.ns-h3, h3.ns { font-family: var(--ns-font-sans); font-weight: 300; font-size: var(--ns-size-heading-xl); line-height: 1.23; letter-spacing: var(--ns-tracking-tight); }
+.ns-h4, h4.ns { font-family: var(--ns-font-sans); font-weight: 700; font-size: var(--ns-size-heading-s); line-height: 1.3;  letter-spacing: var(--ns-tracking-tight); color: var(--ns-fg-accent); }
+.ns-eyebrow   { font-family: var(--ns-font-sans); font-weight: 700; font-size: var(--ns-size-caption); line-height: 1.5; letter-spacing: var(--ns-tracking-body); text-transform: none; }
+
+.ns-serif     { font-family: var(--ns-font-display); font-style: italic; font-weight: 300; letter-spacing: var(--ns-tracking-serif); }
+
+.ns-lead      { font-family: var(--ns-font-sans); font-size: var(--ns-size-body-l); line-height: var(--ns-lh-body-l); letter-spacing: var(--ns-tracking-body); }
+.ns-caption   { font-family: var(--ns-font-sans); font-size: var(--ns-size-caption); line-height: 1.5; color: var(--ns-fg-muted); }
+.ns-quote     { font-family: var(--ns-font-sans); font-weight: 300; font-size: var(--ns-size-heading-xl); line-height: 1.23; letter-spacing: var(--ns-tracking-tight); }
+
+/* Buttons */
+.ns-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 18px 30px;
+  border-radius: var(--ns-radius-pill);
+  background: var(--ns-nimbus-blue);
+  color: var(--ns-pure-white);
+  font-family: var(--ns-font-sans); font-weight: 700; font-size: 15px; letter-spacing: var(--ns-tracking-body);
+  border: 0; cursor: pointer;
+  transition: background 120ms ease, transform 120ms ease;
+}
+.ns-btn:hover { background: var(--ns-ocean-blue); }
+.ns-btn:active { transform: scale(0.98); }
+.ns-btn.ns-btn--ghost { background: transparent; color: var(--ns-pure-white); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.6); }
+.ns-btn.ns-btn--ghost:hover { background: rgba(255,255,255,0.08); }
+.ns-btn.ns-btn--inverse { background: var(--ns-pure-white); color: var(--ns-nimbus-blue); }
+
+/* Convenience surfaces */
+.ns-sheet       { background: var(--ns-pure-white); border-radius: var(--ns-radius-xl); }
+.ns-night-stage { background: var(--ns-gradient-nimbus-night); color: var(--ns-pure-white); }
