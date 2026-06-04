@@ -38,7 +38,8 @@
     var poster = document.querySelector('.poster');
     if (!poster) { window.print(); return; }
     // Medir altura real del contenido y crear un @page del mismo alto
-    var h = Math.ceil(poster.scrollHeight * 1.12) + 80;
+    // Sin multiplicador: print y screen renderizan al mismo tamaño ahora
+    var h = Math.ceil(poster.scrollHeight) + 40;
     var styleId = 'ig-print-size';
     var prev = document.getElementById(styleId);
     if (prev) prev.parentNode.removeChild(prev);

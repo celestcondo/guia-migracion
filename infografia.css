@@ -271,22 +271,17 @@ body::before {
 
 /* ── Print / PDF ────────────────────────────────────── */
 @media print {
-  /* margin: 0 suprime los headers/footers del browser (fecha, URL, página 1/5...) */
+  /* @page size se inyecta dinámicamente por downloadInfografia() en infografia.js
+     para una sola página del alto exacto del contenido. */
   @page { margin: 0; }
 
-  /* Chrome doesn't resolve nested CSS vars in print backgrounds.
-     Strategy: body gets a solid dark fallback; body::before (position:fixed) is
-     kept alive with fully hardcoded gradient stops — fixed elements paint on
-     every printed page, giving us the full Nimbus Night background throughout. */
+  /* Forzar renderizado de colores/fondos */
   html, body {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
-  body {
-    background: #010B23 !important; /* solid dark fallback */
-  }
+  body { background: #010B23 !important; }
   body::before {
-    /* Restore and override — position:fixed paints on every page */
     display: block !important;
     position: fixed !important;
     inset: 0 !important;
@@ -299,29 +294,14 @@ body::before {
       radial-gradient(circle at 8%  88%, rgba(0,180,230,0.12),  transparent 46%),
       radial-gradient(circle at 50% 0%,  #0050C3 0%, #00298F 30%, #080558 65%, #010B23 100%) !important;
   }
-
-  /* Force all backgrounds / borders / colors to print */
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
   .ig-download { display: none !important; }
   .reveal { opacity: 1 !important; transform: none !important; }
-
-  /* Agrega padding propio porque los márgenes de @page son 0 */
-  .poster { position: relative; z-index: 1; padding: 20px 18px 36px; gap: 12px; max-width: 100%; }
-
-  /* Hero más compacto en print — libera espacio para que el primer sheet quepa en pág 1 */
-  .ig-hero { padding: 4px 2px 0; }
-  .ig-hero h1 { font-size: 26px; }
-  .ig-hero p { font-size: 13px; margin-top: 10px; }
-
-  /* Conecta versus-banner con el sheet de razones — evita que arrancen en páginas distintas */
-  .versus-banner { break-after: avoid; }
-
-  .sheet, .benefit, .no-close, .ig-tool, .ig-head, .ig-cta, .ig-foot { break-inside: avoid; }
-  .sheet, .benefit { padding: 22px 20px; }
+  .poster { position: relative; z-index: 1; }
   .btn-activate { box-shadow: none; }
 
-  /* offer-opt--feat also uses var(--ns-gradient-nimbus-night) — inline it too */
+  /* offer-opt--feat usa var(--ns-gradient-nimbus-night) — hardcodeado para print */
   .offer-opt--feat {
     background:
       radial-gradient(circle at 88% 0%, rgba(89,169,255,0.3), transparent 60%),
