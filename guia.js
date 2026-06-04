@@ -86,10 +86,39 @@
     tiendanegocio:'https://guia-migracion.vercel.app/infografia-migracion-tiendanegocio.html'
   };
 
+  /* ── Objections per platform ────────────────────────── */
+  const OBJECTIONS = {
+    shopify: [
+      { title: '"Ya tengo todo configurado, no me conviene moverme"', quote: '"Me llevó meses configurar todo, no quiero empezar desde cero."', resps: ['Entiendo, y es válido proteger el trabajo que ya hiciste. La buena noticia es que <b>no empezás de cero</b>. Con Automágico o LitExtension, tu catálogo completo — productos, fotos, variaciones, precios — migra automáticamente vía API. No es copiar y pegar, es una importación automática. Lo que ya armaste se mueve con vos.', 'Las configuraciones de envío y pago son más simples en Tiendanube porque Pago Nube y Envío Nube ya están integrados — no hay que configurar APIs de terceros.'], tip: null },
+      { title: '"Tengo miedo de perder datos o que se caigan mis ventas"', quote: '"¿Y si algo sale mal durante la migración? ¿Pierdo ventas?"', resps: ['No perdés nada porque el proceso es <b>en paralelo</b>. Las dos tiendas existen al mismo tiempo. Vos migrás el catálogo, configurás la nueva tienda, la probás al 100%, y recién cuando estás seguro redirigís el dominio. Shopify sigue activo mientras tanto. LitExtension hasta migra el historial de órdenes y los datos de clientes.'], tip: '<b>Dato clave:</b> El proceso es más rápido y seguro de lo que parece. La tienda en Shopify no se toca hasta que vos lo decidís.' },
+      { title: '"Shopify tiene muchas más apps e integraciones"', quote: '"Shopify tiene miles de apps, Tiendanube parece limitado."', resps: ['Shopify tiene más apps globales, sí. Pero el 80% de lo que necesitás para vender en Argentina está <b>nativo en Tiendanube</b>, sin apps de pago adicionales: Pago Nube, Envío Nube, Marketing Nube, integración con Mercado Libre, Facebook, Google, ERPs locales como Xubio y Colppy. En Shopify, cada una de esas integraciones es una app que se paga en dólares por separado.'], tip: 'Preguntale qué apps usa en Shopify. Probablemente el <b>80% ya existe gratis o incluida</b> en el plan de Tiendanube.' },
+      { title: '"¿No es complicado migrar? Parece mucho trabajo"', quote: '"Suena complejo, no tengo tiempo para eso."', resps: ['Tiene sentido que parezca complejo, pero no lo es. Con Automágico el catálogo se migra en minutos, automáticamente. Lo que lleva tiempo es la configuración inicial de la tienda nueva (diseño, dominio, medios de pago), pero eso es un proceso de pocas horas — no semanas. Además, si te sumás a la red de especialistas, podemos hacer esto juntos para tus clientes.'], tip: 'Podés ofrecerle al cliente hacer la migración por él, como un <b>servicio técnico aparte</b>. Es una oportunidad de ingreso adicional más allá de la comisión.' }
+    ],
+    woo: [
+      { title: '"Ya tengo todo configurado, no me conviene moverme"', quote: '"Me llevó tiempo armarlo todo, no quiero empezar desde cero."', resps: ['Entiendo, y es válido. La buena noticia es que <b>no empezás de cero</b>. Con Automágico o LitExtension, tu catálogo completo migra automáticamente. Lo que ya armaste se mueve con vos.', 'Además, en Tiendanube no hay que mantener plugins ni gestionar actualizaciones. Pago Nube, Envío Nube y soporte vienen integrados — sin que vos tengas que encargarte de que no se rompa nada.'], tip: null },
+      { title: '"Tengo miedo de perder datos o que se caigan mis ventas"', quote: '"¿Y si algo sale mal durante la migración? ¿Pierdo ventas?"', resps: ['No perdés nada porque el proceso es <b>en paralelo</b>. WooCommerce sigue activo mientras armás la nueva tienda. Vos migrás el catálogo, la probás al 100%, y recién cuando estás seguro redirigís el dominio. LitExtension migra productos, clientes e historial de órdenes completo.'], tip: '<b>Dato clave:</b> La migración desde WooCommerce es una de las más simples — el catálogo migra automáticamente vía API con Automágico.' },
+      { title: '"WooCommerce es gratis, ¿por qué pagar por Tiendanube?"', quote: '"El plugin de WooCommerce no cuesta nada, Tiendanube tiene un costo mensual."', resps: ['WooCommerce es gratis de instalar, pero no de usar. Necesitás hosting (desde USD 10/mes), certificado SSL, plugins para medios de pago argentinos, plugins para cada correo y actualizaciones constantes. Gran parte se paga en dólares, y si algo se rompe, el soporte es tuyo. En Tiendanube, todo está incluido en un precio fijo en pesos: hosting, SSL, Pago Nube, Envío Nube y soporte 24/7.'], tip: 'Hacé la cuenta del costo real de WooCommerce: hosting + SSL + plugins premium. La mayoría de los clientes se sorprenden cuando lo calculan.' },
+      { title: '"¿No es complicado migrar? Parece mucho trabajo"', quote: '"Suena complejo, no tengo tiempo para eso."', resps: ['Con Automágico el catálogo se migra en minutos, automáticamente. Lo que lleva tiempo es la configuración inicial (diseño, dominio, medios de pago), pero eso es pocas horas — no semanas. Y a diferencia de WooCommerce, en Tiendanube no hay plugins que mantener después.'], tip: 'Podés ofrecerle al cliente hacer la migración por él, como un <b>servicio técnico aparte</b>. Es una oportunidad de ingreso adicional más allá de la comisión.' }
+    ],
+    empretienda: [
+      { title: '"Ya tengo todo configurado, no me conviene moverme"', quote: '"Mi tienda funciona bien, no quiero tocar lo que anda."', resps: ['Si vende bien ahora, es el mejor momento para dar el salto — antes de que el volumen haga el cambio más difícil. La buena noticia es que <b>no empezás de cero</b>: tu catálogo completo migra automáticamente con Automágico. Lo que ya armaste se mueve con vos.', 'Lo que cambia es el ecosistema al que accedés: Pago Nube (21,6% de ahorro en procesamiento), Envío Nube (16% más barato), Marketing Nube y +200 apps locales.'], tip: null },
+      { title: '"Tengo miedo de perder datos o que se caigan mis ventas"', quote: '"¿Y si algo sale mal durante la migración? ¿Pierdo ventas?"', resps: ['No perdés nada porque el proceso es <b>en paralelo</b>. Empretienda sigue activa mientras armás la nueva tienda. Vos migrás el catálogo, la probás al 100%, y recién cuando estás seguro redirigís el dominio.'], tip: '<b>Caso real:</b> CeCe Piume migró de Empretienda en un día y no perdió ni una venta. El proceso es más rápido y seguro de lo que parece.' },
+      { title: '"Empretienda está bien para lo que necesito ahora"', quote: '"Vendo, no tengo problemas, ¿para qué cambiar?"', resps: ['Si está funcionando, ese es justamente el mejor momento para escalar. Empretienda cubre lo básico, pero sin Pago Nube (21,6% de ahorro en cada transacción), sin Envío Nube y sin el ecosistema de +200 apps locales. A medida que crecés, cada una de esas herramientas se vuelve crítica para competir. Tiendanube está construido para acompañarte desde el inicio hasta el escalado.'], tip: '<b>Para usar con este cliente:</b> CeCe Piume migró de Empretienda en un día, sin perder una venta, y accedió a herramientas que antes no tenía.' },
+      { title: '"¿No es complicado migrar? Parece mucho trabajo"', quote: '"Suena complejo, no tengo tiempo para eso."', resps: ['Con Automágico el catálogo se migra en minutos, automáticamente. Lo que lleva tiempo es la configuración inicial (diseño, dominio, medios de pago), pero eso es pocas horas — no semanas. Además, si te sumás a la red de especialistas, podemos hacer esto juntos para tus clientes.'], tip: 'Podés ofrecerle al cliente hacer la migración por él, como un <b>servicio técnico aparte</b>. Es una oportunidad de ingreso adicional más allá de la comisión.' }
+    ],
+    tiendanegocio: [
+      { title: '"Ya tengo todo configurado, no me conviene moverme"', quote: '"Ya armé mi tienda, no quiero empezar de nuevo."', resps: ['Entiendo, y es válido. La buena noticia es que <b>no empezás de cero</b>. Con Automágico, tu catálogo completo migra automáticamente. Lo que ya armaste se mueve con vos.', 'Lo que cambia es a lo que accedés: Pago Nube, Envío Nube, Marketing Nube e integración nativa con Meta y Google Shopping. Todo eso no está disponible en Tienda Negocio.'], tip: null },
+      { title: '"Tengo miedo de perder datos o que se caigan mis ventas"', quote: '"¿Y si algo sale mal durante la migración? ¿Pierdo ventas?"', resps: ['No perdés nada porque el proceso es <b>en paralelo</b>. Tu tienda en Tienda Negocio sigue activa mientras armás la nueva. Vos migrás el catálogo, la probás al 100%, y recién cuando estás seguro redirigís el dominio. LitExtension migra productos, clientes e historial de órdenes completo.'], tip: '<b>Dato clave:</b> El proceso es más rápido y seguro de lo que parece — nada se pierde.' },
+      { title: '"Tienda Negocio es más barata, no me conviene pagar más"', quote: '"Tienda Negocio me cuesta menos por mes, ¿qué me da Tiendanube que justifique el precio?"', resps: ['Tiene lógica cuestionar el costo. Pero la pregunta real es qué perdés quedándote: sin Pago Nube, pagás de más en cada transacción (21,6% más en procesamiento). Sin Envío Nube, tus envíos cuestan 16% más que el promedio. Sin Meta y Google Shopping nativos, perdés visibilidad y ventas. En la mayoría de los casos, las herramientas de Tiendanube se pagan solas desde el primer mes.'], tip: 'Hacé el cálculo con el cliente: ¿cuántas ventas hace por mes? Con el ahorro de Pago Nube y Envío Nube, la diferencia de precio suele cubrirse fácilmente.' },
+      { title: '"¿No es complicado migrar? Parece mucho trabajo"', quote: '"Suena complejo, no tengo tiempo para eso."', resps: ['Con Automágico el catálogo se migra en minutos, automáticamente. Lo que lleva tiempo es la configuración inicial (diseño, dominio, medios de pago), pero eso es pocas horas — no semanas. Además, si te sumás a la red de especialistas, podemos hacer esto juntos para tus clientes.'], tip: 'Podés ofrecerle al cliente hacer la migración por él, como un <b>servicio técnico aparte</b>. Es una oportunidad de ingreso adicional más allá de la comisión.' }
+    ]
+  };
+
   const cmpPlat = document.getElementById('cmpPlat');
   const sharePlat = document.getElementById('sharePlat');
   const versus = document.getElementById('versus');
   const platGrid = document.getElementById('platGrid');
+  const objList = document.querySelector('#objeciones .obj-list');
 
   function escapeHtml(s) {
     return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -116,6 +145,25 @@
         '<span class="detail">' + escapeHtml(c.detail) + '</span>' +
         '<span class="chip">' + escapeHtml(c.chip) + '</span>';
     });
+
+    // Update objections for the selected platform
+    if (objList && OBJECTIONS[key]) {
+      var objs = OBJECTIONS[key];
+      objList.innerHTML = objs.map(function (obj, i) {
+        var respsHtml = obj.resps.map(function (r) { return '<p class="resp">' + r + '</p>'; }).join('');
+        var tipHtml = obj.tip ? '<div class="tip">' + obj.tip + '</div>' : '';
+        return '<details class="obj reveal in' + (i === 0 ? ' open' : '') + '">' +
+          '<summary>' +
+          '<span class="onum">' + (i + 1) + '</span>' +
+          '<span class="otitle">' + escapeHtml(obj.title) + '</span>' +
+          '<span class="ochevron">+</span>' +
+          '</summary>' +
+          '<div class="obody">' +
+          '<p class="quote">' + obj.quote + '</p>' +
+          respsHtml + tipHtml +
+          '</div></details>';
+      }).join('');
+    }
 
     // subtle fade-in on the competitor column
     versus.querySelectorAll('.vcell--rival').forEach(function (cell) {
