@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WooCommerce vs Tiendanube · ¿Es hora de migrar?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+  :root {
+    --blue: #0050c3;
+    --blue-dark: #171E43;
+    --blue-deep: #010B23;
+    --blue-light: #BCDFFD;
+    --blue-clear: #DEEFFE;
+    --blue-bg: #f5faff;
+    --sky: #00b4e6;
+    --green: #0ca76b;
+    --white: #ffffff;
+    --grey-light: #A0A3A6;
+    --grey-text: #343537;
+    --grey-bg: #f7f7f7;
+    --grey-border: #E7E8E9;
+    --rival: #7f54b3;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    --radius-lg: 20px;
+    --radius-pill: 100px;
+    --shadow: 0 20px 60px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font);
+    background: #f0f4f8;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 680px;
+    background: var(--white);
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .header {
+    background: radial-gradient(203.73% 209.35% at 3.75% 130.93%, #0050c3 0%, #00298f 29.81%, #080558 65.38%, #010b23 100%);
+    padding: 40px 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(188,223,253,0.1);
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 40%;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(0,80,195,0.2);
+  }
+
+  .header-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--blue-light);
+    background: rgba(188,223,253,0.12); border: 1px solid rgba(188,223,253,0.2);
+    padding: 4px 12px; border-radius: var(--radius-pill);
+    margin-bottom: 20px; position: relative; z-index: 1;
+  }
+
+  .header-tag::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--sky); animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .header h1 {
+    font-size: clamp(26px, 4vw, 36px); font-weight: 800;
+    color: var(--white); line-height: 1.15; letter-spacing: -0.02em;
+    margin-bottom: 12px; position: relative; z-index: 1;
+  }
+
+  .header h1 .accent {
+    background: linear-gradient(135deg, #BCDFFD 0%, #00b4e6 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  .header-sub {
+    font-size: 15px; color: rgba(255,255,255,0.65);
+    line-height: 1.5; max-width: 440px; position: relative; z-index: 1;
+  }
+
+  .compare-pills {
+    display: flex; gap: 12px; padding: 20px 40px;
+    background: var(--blue-dark); align-items: center; justify-content: center;
+  }
+
+  .pill {
+    flex: 1; text-align: center; padding: 10px 16px;
+    border-radius: var(--radius-pill); font-size: 14px; font-weight: 700;
+  }
+
+  .pill-rival {
+    background: rgba(127,84,179,0.15);
+    color: #b89de0;
+    border: 1px solid rgba(127,84,179,0.35);
+  }
+
+  .pill-tn { background: var(--blue); color: var(--white); }
+
+  .pill-vs {
+    font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.3);
+    text-transform: uppercase; letter-spacing: 0.1em; flex: 0 0 auto;
+  }
+
+  .reasons { padding: 32px 40px; }
+
+  .reasons-title {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--blue); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .reasons-title::before { content: ''; width: 16px; height: 2px; background: var(--blue); }
+
+  .reason-row {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px 0; border-bottom: 1px solid var(--grey-border);
+  }
+
+  .reason-row:last-child { border-bottom: none; }
+
+  .reason-icon {
+    width: 40px; height: 40px; border-radius: 12px; background: var(--blue-bg);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0; margin-top: 2px;
+  }
+
+  .reason-content { flex: 1; }
+
+  .reason-title {
+    font-size: 15px; font-weight: 700; color: var(--blue-dark);
+    margin-bottom: 4px; line-height: 1.3;
+  }
+
+  .reason-detail {
+    font-size: 13px; color: var(--grey-light); line-height: 1.5;
+  }
+
+  .reason-detail strong { color: var(--green); font-weight: 600; }
+
+  .reason-badge {
+    flex-shrink: 0; font-size: 11px; font-weight: 700;
+    padding: 4px 10px; border-radius: var(--radius-pill);
+    align-self: flex-start; margin-top: 4px;
+  }
+
+  .badge-win { background: rgba(12,167,107,0.1); color: var(--green); }
+  .badge-risk { background: rgba(204,68,68,0.08); color: #cc4444; }
+
+  .steps {
+    background: var(--blue-dark); padding: 32px 40px;
+  }
+
+  .steps-title {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--sky); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .steps-title::before { content: ''; width: 16px; height: 2px; background: var(--sky); }
+
+  .steps-row {
+    display: flex; gap: 0; align-items: flex-start; position: relative;
+  }
+
+  .step {
+    flex: 1; text-align: center; padding: 0 8px; position: relative;
+  }
+
+  .step:not(:last-child)::after {
+    content: '→'; position: absolute; right: -8px; top: 14px;
+    color: rgba(255,255,255,0.2); font-size: 14px;
+  }
+
+  .step-circle {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(0,80,195,0.4); border: 1px solid rgba(0,80,195,0.6);
+    color: var(--blue-light); font-size: 14px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 10px;
+  }
+
+  .step-text {
+    font-size: 11px; color: rgba(255,255,255,0.65); line-height: 1.4; font-weight: 500;
+  }
+
+  .tools {
+    padding: 28px 40px; background: var(--blue-bg);
+    border-top: 1px solid var(--blue-clear);
+  }
+
+  .tools-title {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--blue); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .tools-title::before { content: ''; width: 16px; height: 2px; background: var(--blue); }
+
+  .tools-row { display: flex; gap: 12px; }
+
+  .tool-mini {
+    flex: 1; background: var(--white); border: 1px solid var(--grey-border);
+    border-radius: 14px; padding: 16px;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+
+  .tool-mini-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .tool-mini-name { font-size: 14px; font-weight: 700; color: var(--blue-dark); margin-bottom: 3px; }
+  .tool-mini-desc { font-size: 12px; color: var(--grey-light); line-height: 1.4; }
+
+  .killer-stat {
+    background: var(--blue); padding: 28px 40px;
+    display: flex; align-items: center; gap: 24px;
+  }
+
+  .killer-num {
+    font-size: 52px; font-weight: 800; color: var(--white); line-height: 1; flex-shrink: 0;
+  }
+
+  .killer-num span { font-size: 28px; }
+
+  .killer-text { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+  .killer-text strong { color: var(--white); }
+
+  @media (max-width: 560px) {
+    .header, .reasons, .steps, .tools, .killer-stat { padding-left: 24px; padding-right: 24px; }
+    .steps-row { flex-wrap: wrap; }
+    .step { flex: 0 0 30%; margin-bottom: 16px; }
+    .step:not(:last-child)::after { display: none; }
+    .tools-row { flex-direction: column; }
+    .killer-stat { flex-direction: column; text-align: center; }
+    .compare-pills { padding: 16px 24px; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div style="margin-bottom: 20px;">
+      <img src="https://ranking-afiliados.vercel.app/tn_logo.svg" alt="Tiendanube" style="height: 28px; filter: brightness(0) invert(1); opacity: 0.9;">
+    </div>
+    <div class="header-tag">¿Usás WooCommerce?</div>
+    <h1>¿Tu tienda está en WooCommerce?<br><span class="accent">Hay una opción más simple</span><br>para vender en Argentina.</h1>
+    <p class="header-sub">Tiendanube es la plataforma líder de e-commerce en Argentina — con soporte oficial, herramientas integradas y sin plugins que mantener.</p>
+  </div>
+
+  <!-- COMPARE PILLS -->
+  <div class="compare-pills">
+    <div class="pill pill-rival">WooCommerce</div>
+    <div class="pill-vs">vs</div>
+    <div class="pill pill-tn">Tiendanube</div>
+  </div>
+
+  <!-- 5 RAZONES -->
+  <div class="reasons">
+    <div class="reasons-title">5 razones concretas</div>
+
+    <div class="reason-row">
+      <div class="reason-icon">💵</div>
+      <div class="reason-content">
+        <div class="reason-title">Sin costos ocultos: pagás en pesos, sabés qué pagás</div>
+        <div class="reason-detail">WooCommerce suma hosting + SSL + plugins premium, varios en USD. <strong>Tiendanube: todo incluido en ARS, sin sorpresas.</strong></div>
+      </div>
+      <div class="reason-badge badge-risk">Woo: costos ocultos</div>
+    </div>
+
+    <div class="reason-row">
+      <div class="reason-icon">💳</div>
+      <div class="reason-content">
+        <div class="reason-title">Pago Nube nativo — sin configuración manual</div>
+        <div class="reason-detail">En WooCommerce conectar Mercado Pago y cuotas es trabajo manual y mantenimiento tuyo. <strong>En Tiendanube ya está. Checkout 30% más rápido = más conversión.</strong></div>
+      </div>
+      <div class="reason-badge badge-win">Tiendanube: nativo</div>
+    </div>
+
+    <div class="reason-row">
+      <div class="reason-icon">🚚</div>
+      <div class="reason-content">
+        <div class="reason-title">Envíos integrados: OCA, Andreani y más, sin plugins</div>
+        <div class="reason-detail">En Woo cada correo es un plugin que instalás, configurás y mantenés vos. <strong>Envío Nube: 16% más barato y listo desde el día uno.</strong></div>
+      </div>
+      <div class="reason-badge badge-win">Tiendanube: integrado</div>
+    </div>
+
+    <div class="reason-row">
+      <div class="reason-icon">🤝</div>
+      <div class="reason-content">
+        <div class="reason-title">Soporte oficial 24/7, no foros ni comunidades</div>
+        <div class="reason-detail">Con WooCommerce dependés de la comunidad o de pagar un desarrollador cuando algo falla. Tiendanube tiene soporte humano en español que entiende AFIP y logística local.</div>
+      </div>
+      <div class="reason-badge badge-risk">Woo: sin respaldo</div>
+    </div>
+
+    <div class="reason-row">
+      <div class="reason-icon">📈</div>
+      <div class="reason-content">
+        <div class="reason-title">Todo incluido, sin riesgo de plugins rotos</div>
+        <div class="reason-detail">En Woo, más plugins = más puntos de falla. En Tiendanube tenés Marketing Nube, ERPs locales, MELI y Google integrados. <strong>+200 apps, sin que una actualización te tire la tienda.</strong></div>
+      </div>
+      <div class="reason-badge badge-win">Tiendanube: +200 apps</div>
+    </div>
+
+  </div>
+
+  <!-- KILLER STAT -->
+  <div class="killer-stat">
+    <div class="killer-num" style="font-size:36px; line-height:1.2;">Tu tienda<br>no cierra</div>
+    <div class="killer-text">
+      <strong>Seguís vendiendo en WooCommerce mientras migrás.</strong><br>
+      Solo cuando todo está listo en Tiendanube redirigís tu dominio. Sin pérdida de ventas, sin pérdida de datos.
+    </div>
+  </div>
+
+  <!-- MIGRATION STEPS -->
+  <div class="steps">
+    <div class="steps-title">Cómo migrás en 6 pasos simples</div>
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-circle">1</div>
+        <div class="step-text">Abrís tu cuenta en Tiendanube</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">2</div>
+        <div class="step-text">Migrás el catálogo con Automágico</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">3</div>
+        <div class="step-text">Elegís tu plan pago</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">4</div>
+        <div class="step-text">Configurás diseño y pagos</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">5</div>
+        <div class="step-text">Probás que todo funcione</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">6</div>
+        <div class="step-text">Redirigís tu dominio. ¡Listo!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOLS MINI -->
+  <div class="tools">
+    <div class="tools-title">Las herramientas que lo hacen posible</div>
+    <div class="tools-row">
+      <div class="tool-mini">
+        <div class="tool-mini-icon">⚡</div>
+        <div>
+          <div class="tool-mini-name">Automágico</div>
+          <div class="tool-mini-desc">Migra tu catálogo completo desde WooCommerce automáticamente vía API.</div>
+        </div>
+      </div>
+      <div class="tool-mini">
+        <div class="tool-mini-icon">🔄</div>
+        <div>
+          <div class="tool-mini-name">LitExtension</div>
+          <div class="tool-mini-desc">Migra productos, clientes e historial de órdenes completo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CIERRE: BENEFICIO DEL ASESOR -->
+  <div style="background: linear-gradient(135deg, #0a3d7a 0%, #0050c3 100%); padding: 36px 40px; text-align: center; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; border-radius: 50%; background: rgba(255,255,255,0.05);"></div>
+    <div style="position: absolute; bottom: -30px; left: -30px; width: 120px; height: 120px; border-radius: 50%; background: rgba(255,255,255,0.04);"></div>
+
+    <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 100px; padding: 6px 14px; margin-bottom: 20px; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 0.05em; text-transform: uppercase;">
+      🎁 Beneficio reservado por tu asesor
+    </div>
+
+    <div style="display: flex; gap: 16px; justify-content: center; margin-bottom: 28px; flex-wrap: wrap;">
+      <div style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 16px; padding: 20px 24px; flex: 1; min-width: 180px; max-width: 240px;">
+        <div style="font-size: 40px; font-weight: 900; color: #fff; line-height: 1; font-family: var(--font);">25% off</div>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 6px; line-height: 1.4;">en tu primer mes de cualquier plan pago</div>
+      </div>
+      <div style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 16px; padding: 20px 24px; flex: 1; min-width: 180px; max-width: 240px;">
+        <div style="font-size: 28px; line-height: 1; margin-bottom: 6px;">🛠️</div>
+        <div style="font-size: 14px; font-weight: 700; color: #fff; line-height: 1.3;">Un especialista que te acompaña en cada paso</div>
+        <div style="font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 5px; line-height: 1.4;">Setup, migración y configuración incluidos</div>
+      </div>
+    </div>
+
+    <div id="asesor-label" style="font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 24px;">Este beneficio es exclusivo a través del link de tu asesor.</div>
+
+    <a id="cta-btn" href="https://www.tiendanube.com" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: #fff; color: var(--blue); font-family: var(--font); font-size: 16px; font-weight: 800; padding: 16px 32px; border-radius: 100px; text-decoration: none; transition: all 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+      Activar mi beneficio →
+    </a>
+  </div>
+
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const ref = params.get('ref');
+  const asesor = params.get('asesor');
+  if (ref) {
+    const url = ref.startsWith('http') ? ref : `https://www.tiendanube.com/partners/${ref}`;
+    document.getElementById('cta-btn').href = url;
+  }
+  if (asesor) {
+    document.getElementById('asesor-label').textContent = `Este beneficio te lo acercó ${asesor}.`;
+    document.getElementById('asesor-label').style.color = 'rgba(255,255,255,0.65)';
+  }
+</script>
+</body>
+</html>
