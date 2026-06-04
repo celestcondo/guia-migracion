@@ -33,6 +33,28 @@
     el.style.alignItems = 'center';
   });
 
+  // ── Descarga como PDF de una sola página (sin cortes) ──────────────────────
+  window.downloadInfografia = function () {
+    var poster = document.querySelector('.poster');
+    if (!poster) { window.print(); return; }
+    // Medir altura real del contenido y crear un @page del mismo alto
+    var h = Math.ceil(poster.scrollHeight * 1.12) + 80;
+    var styleId = 'ig-print-size';
+    var prev = document.getElementById(styleId);
+    if (prev) prev.parentNode.removeChild(prev);
+    var st = document.createElement('style');
+    st.id = styleId;
+    // 620px de ancho (poster max-width 600px + márgenes laterales mínimos)
+    st.textContent = '@page { size: 620px ' + h + 'px !important; margin: 0 !important; }';
+    document.head.appendChild(st);
+    window.print();
+    // Limpiar después de imprimir
+    setTimeout(function () {
+      var el = document.getElementById(styleId);
+      if (el && el.parentNode) el.parentNode.removeChild(el);
+    }, 4000);
+  };
+
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
   function showAll() { reveals.forEach(function (el) { el.classList.add('in'); }); }
