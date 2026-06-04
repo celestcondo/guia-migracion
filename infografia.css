@@ -305,9 +305,19 @@ body::before {
 
   .ig-download { display: none !important; }
   .reveal { opacity: 1 !important; transform: none !important; }
+
   /* Agrega padding propio porque los márgenes de @page son 0 */
-  .poster { position: relative; z-index: 1; padding: 20px 18px 36px; gap: 16px; max-width: 100%; }
-  .sheet, .benefit, .no-close, .versus-banner, .ig-tool, .ig-head, .ig-hero, .ig-cta, .ig-foot { break-inside: avoid; }
+  .poster { position: relative; z-index: 1; padding: 20px 18px 36px; gap: 12px; max-width: 100%; }
+
+  /* Hero más compacto en print — libera espacio para que el primer sheet quepa en pág 1 */
+  .ig-hero { padding: 4px 2px 0; }
+  .ig-hero h1 { font-size: 26px; }
+  .ig-hero p { font-size: 13px; margin-top: 10px; }
+
+  /* Conecta versus-banner con el sheet de razones — evita que arrancen en páginas distintas */
+  .versus-banner { break-after: avoid; }
+
+  .sheet, .benefit, .no-close, .ig-tool, .ig-head, .ig-cta, .ig-foot { break-inside: avoid; }
   .sheet, .benefit { padding: 22px 20px; }
   .btn-activate { box-shadow: none; }
 
