@@ -68,12 +68,12 @@
     },
     tiendanegocio: {
       name: 'Tienda Negocio', cells: {
-        costo: { claim: 'Atado a las reglas del marketplace', detail: 'Comisiones y condiciones que no controlás, sumadas al costo de vender en una plataforma de terceros.', chip: 'Comisiones' },
-        pagos: { claim: 'Pagos limitados al marketplace', detail: 'Sin un checkout propio optimizado ni control sobre la experiencia de cobro.', chip: 'Sin checkout propio' },
-        logistica: { claim: 'Logística del marketplace', detail: 'Dependés del esquema de envíos de la plataforma, con poca flexibilidad de correos.', chip: 'Poco flexible' },
-        soporte: { claim: 'Soporte genérico', detail: 'Atención pensada para el marketplace, no para hacer crecer tu tienda independiente.', chip: 'Genérico' },
-        marketing: { claim: 'Sin herramientas de marca propias', detail: 'No hay forma de construir una marca propia con email y automatizaciones.', chip: 'Sin marca propia' },
-        apps: { claim: 'Personalización muy limitada', detail: 'Es como alquilar un local: poco control, casi sin apps ni integraciones propias.', chip: 'Local alquilado' }
+        costo: { claim: 'Planes más baratos, pero sin herramientas para crecer', detail: 'Sin Pago Nube, Envío Nube ni suite de marketing incluidos. Tiendanube incluye todo lo que necesitás para escalar desde el primer día.', chip: 'Sin herramientas de escala' },
+        pagos: { claim: 'Sin solución de pago propia', detail: 'Tienda Negocio no tiene un checkout nativo optimizado. Pago Nube tiene todos los medios argentinos y es 30% más rápido.', chip: 'Sin Pago Nube' },
+        logistica: { claim: 'Integraciones de envío más básicas', detail: 'Sin el alcance de Envío Nube (OCA, Andreani, Mercado Envíos y más). 16% más barato que el promedio del mercado.', chip: 'Cobertura menor' },
+        soporte: { claim: 'Plataforma sin track record', detail: '+65.000 tiendas activas y +10 años en el mercado. Soporte humano 24/7 que entiende AFIP, cuotas y logística local.', chip: 'Sin experiencia' },
+        marketing: { claim: 'Sin integración nativa con Meta ni Google Shopping', detail: 'Tienda Negocio no tiene Marketing Nube ni conexión nativa con las principales plataformas de publicidad.', chip: 'Sin Marketing Nube' },
+        apps: { claim: 'Ecosistema de apps muy limitado', detail: 'Sin el ecosistema de +200 apps locales (Xubio, Colppy, MELI, Facebook, Google) que tiene Tiendanube.', chip: 'Menos integraciones' }
       }
     }
   };
