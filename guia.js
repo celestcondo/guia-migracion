@@ -78,6 +78,14 @@
     }
   };
 
+  /* ── Infografia URLs per platform ──────────────────────── */
+  const INFOGRAFIA_URLS = {
+    shopify:      'https://guia-migracion.vercel.app/infografia-migracion-shopify.html',
+    woo:          'https://guia-migracion.vercel.app/infografia-migracion-woocommerce.html',
+    empretienda:  'https://guia-migracion.vercel.app/infografia-migracion-empretienda.html',
+    tiendanegocio:'https://guia-migracion.vercel.app/infografia-migracion-tiendanegocio.html'
+  };
+
   const cmpPlat = document.getElementById('cmpPlat');
   const sharePlat = document.getElementById('sharePlat');
   const versus = document.getElementById('versus');
@@ -92,6 +100,10 @@
     if (!data) return;
     if (cmpPlat) cmpPlat.textContent = data.name;
     if (sharePlat) sharePlat.textContent = data.name;
+
+    // Update the share-card button href to the platform-specific infografia
+    var shareBtn = document.querySelector('.share-card .btn-inverse');
+    if (shareBtn && INFOGRAFIA_URLS[key]) shareBtn.href = INFOGRAFIA_URLS[key];
 
     versus.querySelectorAll('.vrow').forEach(function (row) {
       const rk = row.getAttribute('data-key');
