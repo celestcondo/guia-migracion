@@ -1,0 +1,256 @@
+/* ─────────────────────────────────────────────────────────
+   Infografía · Shopify vs Tiendanube — versión para el cliente
+   Poster vertical · marca Tiendanube · mobile-first
+   ───────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--ns-font-sans);
+  color: #fff;
+  background: #010B23;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+}
+img { display: block; max-width: 100%; }
+::selection { background: rgba(89,169,255,0.32); }
+
+.serif {
+  font-family: "IvyPresto Display", serif;
+  font-weight: 300; font-style: italic; letter-spacing: -0.005em;
+}
+
+/* night-sky gradient locked to the viewport (works on iOS, unlike fixed bg) */
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(circle at 84% 6%, rgba(89,169,255,0.20), transparent 42%),
+    radial-gradient(circle at 8% 88%, rgba(0,180,230,0.12), transparent 46%),
+    var(--ns-gradient-nimbus-night);
+}
+
+/* The poster column */
+.poster {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 600px; margin: 0 auto;
+  padding: 26px 18px 40px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+
+/* ── Header ─────────────────────────────────────────── */
+.ig-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.ig-head .logo img { height: 24px; width: auto; }
+.ig-head .eyebrow {
+  font-size: 12px; font-weight: 700; letter-spacing: -0.005em;
+  color: var(--ns-highlight-blue);
+  background: rgba(89,169,255,0.14); padding: 7px 13px; border-radius: var(--ns-radius-pill);
+  display: inline-flex; align-items: center; gap: 7px;
+}
+
+/* ── Hero ───────────────────────────────────────────── */
+.ig-hero { padding: 8px 4px 4px; }
+.ig-hero h1 {
+  font-size: clamp(30px, 8.6vw, 44px); font-weight: 700; line-height: 1.04;
+  letter-spacing: -0.022em; margin: 0; text-wrap: balance;
+}
+.ig-hero h1 .serif { color: var(--ns-highlight-blue); font-weight: 300; display: block; margin-top: 2px; }
+.ig-hero p {
+  font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.8);
+  margin: 16px 0 0; max-width: 460px;
+}
+
+/* ── Versus banner ──────────────────────────────────── */
+.versus-banner {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--ns-radius-l); padding: 16px;
+}
+.versus-banner .side { display: flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; }
+.versus-banner .badge {
+  width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+  font-size: 17px; font-weight: 800; letter-spacing: -0.02em;
+}
+.versus-banner .badge--rival { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); }
+.versus-banner .badge--tn { background: #fff; color: var(--ns-nimbus-blue); }
+.versus-banner .nm { font-size: 13px; font-weight: 700; }
+.versus-banner .nm--rival { color: rgba(255,255,255,0.7); }
+.versus-banner .vs {
+  font-family: "IvyPresto Display", serif; font-style: italic; font-weight: 300;
+  font-size: 22px; color: var(--ns-highlight-blue);
+}
+
+/* ── White sheet primitive ──────────────────────────── */
+.sheet {
+  background: #fff; color: var(--ns-ink);
+  border-radius: var(--ns-radius-xl); padding: 26px 22px;
+  box-shadow: 0 18px 40px rgba(1,11,35,0.28);
+}
+.sheet > .sh-title {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--ns-nimbus-blue); margin: 0 0 18px; display: flex; align-items: center; gap: 9px;
+}
+.sheet > .sh-title::after { content: ""; flex: 1; height: 1px; background: var(--ns-gray-10); }
+
+/* ── Reasons ────────────────────────────────────────── */
+.reasons { display: flex; flex-direction: column; gap: 16px; }
+.reason { display: flex; gap: 14px; align-items: flex-start; }
+.reason + .reason { padding-top: 16px; border-top: 1px solid var(--ns-gray-10); }
+.reason .ic {
+  flex: 0 0 44px; width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(0,80,195,0.08); color: var(--ns-nimbus-blue);
+  display: grid; place-items: center;
+}
+.reason .r-body { min-width: 0; }
+.reason h3 { font-size: 16px; font-weight: 700; letter-spacing: -0.012em; line-height: 1.25; margin: 2px 0 6px; }
+.reason p { font-size: 13.5px; line-height: 1.5; color: var(--ns-gray-60); margin: 0; }
+.reason p b { color: var(--ns-ink); font-weight: 700; }
+.reason .chip {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+  font-size: 11.5px; font-weight: 700; padding: 5px 11px; border-radius: var(--ns-radius-pill);
+}
+.chip--pos { background: rgba(0,205,75,0.13); color: #047a2e; }
+.chip--neg { background: rgba(195,53,93,0.1); color: var(--ns-pink); }
+
+/* ── "Tu tienda no cierra" highlight ────────────────── */
+.no-close {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14);
+  border-radius: var(--ns-radius-l); padding: 24px 22px;
+  display: flex; gap: 16px; align-items: center;
+}
+.no-close .ic {
+  flex: 0 0 46px; width: 46px; height: 46px; border-radius: 13px;
+  background: rgba(89,169,255,0.16); color: var(--ns-highlight-blue); display: grid; place-items: center;
+}
+.no-close h3 {
+  font-size: 20px; font-weight: 700; line-height: 1.1; letter-spacing: -0.015em; margin: 2px 0 8px;
+}
+.no-close h3 .serif { color: var(--ns-highlight-blue); font-size: 1.16em; line-height: 1; }
+.no-close p { font-size: 13.5px; line-height: 1.55; color: rgba(255,255,255,0.78); margin: 0; }
+.no-close p b { color: #fff; font-weight: 700; }
+
+/* ── 6 steps ────────────────────────────────────────── */
+.ig-steps { display: flex; flex-direction: column; gap: 0; }
+.ig-step { display: flex; gap: 14px; padding-bottom: 16px; position: relative; }
+.ig-step:last-child { padding-bottom: 0; }
+.ig-step .rail { flex: 0 0 34px; display: flex; flex-direction: column; align-items: center; }
+.ig-step .snum {
+  width: 34px; height: 34px; border-radius: 50%; flex: 0 0 auto;
+  background: var(--ns-nimbus-blue); color: #fff; display: grid; place-items: center;
+  font-size: 15px; font-weight: 800;
+}
+.ig-step .line { flex: 1; width: 2px; background: var(--ns-gray-10); margin-top: 5px; }
+.ig-step:last-child .line { display: none; }
+.ig-step .st-body { padding-top: 6px; }
+.ig-step .st-body p { margin: 0; font-size: 14.5px; font-weight: 600; line-height: 1.3; color: var(--ns-ink); }
+.ig-step .st-body p b { color: var(--ns-nimbus-blue); }
+
+/* ── Tools ──────────────────────────────────────────── */
+.ig-tools { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.ig-tool {
+  border: 1.5px solid var(--ns-gray-10); border-radius: var(--ns-radius-m); padding: 18px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.ig-tool .ic {
+  flex: 0 0 42px; width: 42px; height: 42px; border-radius: 11px;
+  background: rgba(0,80,195,0.08); color: var(--ns-nimbus-blue); display: grid; place-items: center;
+}
+.ig-tool h4 { font-size: 15.5px; font-weight: 700; letter-spacing: -0.01em; margin: 2px 0 4px; }
+.ig-tool p { font-size: 13px; line-height: 1.45; color: var(--ns-gray-60); margin: 0; }
+
+/* ── Benefit block ──────────────────────────────────── */
+.benefit {
+  background: #fff; color: var(--ns-ink); border-radius: var(--ns-radius-xl);
+  padding: 26px 22px; box-shadow: 0 18px 40px rgba(1,11,35,0.28);
+  position: relative; overflow: hidden;
+}
+.benefit .tag {
+  display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700;
+  color: var(--ns-nimbus-blue); background: rgba(0,80,195,0.07);
+  padding: 7px 13px; border-radius: var(--ns-radius-pill); margin-bottom: 18px;
+}
+.benefit .offer-line { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.benefit .offer-duo { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 480px) { .benefit .offer-duo { grid-template-columns: 1fr 1fr; } }
+.offer-opt {
+  position: relative; border: 1.5px solid var(--ns-gray-10); border-radius: var(--ns-radius-m);
+  padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 4px;
+}
+.offer-opt .pct { font-size: 42px; font-weight: 800; letter-spacing: -0.03em; line-height: 0.92; color: var(--ns-nimbus-blue); }
+.offer-opt .pct span { font-size: 17px; font-weight: 700; }
+.offer-opt .offer-what { font-size: 12.5px; font-weight: 600; color: var(--ns-gray-60); line-height: 1.3; }
+.offer-opt .offer-what b { color: var(--ns-ink); font-weight: 700; }
+.offer-opt--feat {
+  background: var(--ns-gradient-nimbus-night); border-color: transparent; overflow: hidden; padding-top: 30px;
+}
+.offer-opt--feat::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 88% 0%, rgba(89,169,255,0.3), transparent 60%); pointer-events: none;
+}
+.offer-opt--feat > * { position: relative; }
+.offer-opt--feat .pct { color: #fff; }
+.offer-opt--feat .offer-what { color: rgba(255,255,255,0.82); }
+.offer-opt--feat .offer-what b { color: #fff; }
+.offer-opt .opt-ribbon {
+  position: absolute; top: 10px; right: 10px;
+  font-size: 10px; font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase;
+  padding: 4px 9px; border-radius: var(--ns-radius-pill);
+  background: var(--ns-yellow); color: var(--ns-ink);
+}
+.benefit .pct { font-size: 58px; font-weight: 800; letter-spacing: -0.03em; line-height: 0.9; color: var(--ns-nimbus-blue); }
+.benefit .pct span { font-size: 22px; font-weight: 700; }
+.benefit .offer-what { font-size: 14px; font-weight: 600; color: var(--ns-gray-60); line-height: 1.25; max-width: 200px; }
+.benefit .perk {
+  display: flex; gap: 13px; align-items: flex-start; margin-top: 20px;
+  padding-top: 20px; border-top: 1px solid var(--ns-gray-10);
+}
+.benefit .perk .ic {
+  flex: 0 0 40px; width: 40px; height: 40px; border-radius: 11px;
+  background: rgba(0,80,195,0.08); color: var(--ns-nimbus-blue); display: grid; place-items: center;
+}
+.benefit .perk h4 { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; margin: 2px 0 4px; }
+.benefit .perk p { font-size: 13px; line-height: 1.45; color: var(--ns-gray-60); margin: 0; }
+
+/* ── CTA + footer ───────────────────────────────────── */
+.ig-cta { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; padding: 6px 4px 0; }
+.btn-activate {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: #fff; color: var(--ns-nimbus-blue);
+  padding: 15px 26px; border-radius: var(--ns-radius-pill);
+  font-size: 15.5px; font-weight: 700; text-decoration: none; letter-spacing: -0.01em;
+  text-align: center; max-width: 100%; line-height: 1.25;
+  box-shadow: 0 12px 30px rgba(1,11,35,0.32); transition: transform 140ms, box-shadow 160ms;
+}
+.btn-activate svg { flex: 0 0 auto; }
+.btn-activate:hover { transform: translateY(-2px); box-shadow: 0 18px 38px rgba(1,11,35,0.42); }
+.btn-activate:active { transform: scale(0.98); }
+.ig-cta .note { font-size: 12.5px; color: rgba(255,255,255,0.62); max-width: 360px; line-height: 1.45; }
+.ig-foot {
+  text-align: center; padding-top: 8px; font-size: 11.5px; color: rgba(255,255,255,0.5);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.ig-foot img { height: 18px; opacity: 0.8; }
+
+/* ── Reveal ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 560ms cubic-bezier(.2,.7,.2,1), transform 560ms cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+}
+
+/* ── Larger screens: give it a touch more air ───────── */
+@media (min-width: 620px) {
+  .poster { padding: 38px 0 56px; gap: 24px; }
+  .ig-tools { grid-template-columns: 1fr 1fr; }
+  .sheet, .benefit { padding: 32px 30px; }
+}
+
+/* ── Print / PDF ────────────────────────────────────── */
+@media print {
+  @page { margin: 12mm; }
+  html, body { background: var(--ns-gradient-nimbus-night) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body::before { display: none; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .sheet, .benefit, .no-close, .versus-banner, .ig-tool { break-inside: avoid; }
+  .btn-activate { box-shadow: none; }
+}
