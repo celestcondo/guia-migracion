@@ -40,7 +40,7 @@
       name: 'Shopify', cells: {
         costo: { claim: 'Desde USD 20/mes + apps en USD', detail: 'Con cada devaluación el costo sube. El costo real puede duplicarse.', chip: 'Sube con el dólar' },
         pagos: { claim: 'Requiere apps de terceros en AR', detail: 'Sin checkout localizado ni cuotas automáticas argentinas.', chip: 'Sin cuotas locales' },
-        logistica: { claim: 'Sin integración nativa con correos AR', detail: 'Necesita apps o desarrollos adicionales para OCA y Andreani.', chip: 'Apps extra' },
+        logistica: { claim: 'Sin integración nativa con correos AR', detail: 'Necesita apps o desarrollos adicionales.', chip: 'Apps extra' },
         soporte: { claim: 'Chatbot global en inglés', detail: 'Sin equipo dedicado para Argentina ni conocimiento de AFIP.', chip: 'En inglés' },
         marketing: { claim: 'Klaviyo y similares: USD adicionales', detail: 'No incluidos. Cada herramienta de marketing se paga aparte.', chip: 'Costo aparte' },
         apps: { claim: '+6.000 apps globales (muchas en USD)', detail: 'Las integraciones argentinas requieren apps pagas o desarrollo custom.', chip: 'Muchas en USD' }
