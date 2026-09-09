@@ -43,7 +43,8 @@
         logistica: { claim: 'Sin integración nativa con correos AR', detail: 'Necesita apps o desarrollos adicionales.', chip: 'Apps extra' },
         soporte: { claim: 'Chatbot global en inglés', detail: 'Sin equipo dedicado para Argentina ni conocimiento de ARCA.', chip: 'En inglés' },
         marketing: { claim: 'Klaviyo y similares: USD adicionales', detail: 'No incluidos. Cada herramienta de marketing se paga aparte.', chip: 'Costo aparte' },
-        apps: { claim: '+6.000 apps globales (muchas en USD)', detail: 'Las integraciones argentinas requieren apps pagas o desarrollo custom.', chip: 'Muchas en USD' }
+        apps: { claim: '+6.000 apps globales (muchas en USD)', detail: 'Las integraciones argentinas requieren apps pagas o desarrollo custom.', chip: 'Muchas en USD' },
+        ia: { claim: 'Shopify Magic', detail: 'IA global, sin contexto argentino: no entiende cuotas, ARCA ni correos locales.', chip: 'Sin contexto AR' }
       }
     },
     woo: {
@@ -53,7 +54,8 @@
         logistica: { claim: 'Sin envíos nativos en AR', detail: 'Cada correo necesita un plugin que instalás, configurás y mantenés vos.', chip: 'Plugin por correo' },
         soporte: { claim: 'Sin soporte oficial', detail: 'Dependés de foros, la comunidad o de pagarle a un desarrollador cuando algo se rompe.', chip: 'Sin respaldo' },
         marketing: { claim: 'Email y automatizaciones por plugins', detail: 'Funciones repartidas en extensiones de terceros, muchas pagas en USD.', chip: 'Plugins pagos' },
-        apps: { claim: 'Miles de plugins, toda la responsabilidad es tuya', detail: 'Actualizaciones, seguridad y compatibilidad corren por tu cuenta. Un plugin roto puede tirar la tienda.', chip: 'Vos lo mantenés' }
+        apps: { claim: 'Miles de plugins, toda la responsabilidad es tuya', detail: 'Actualizaciones, seguridad y compatibilidad corren por tu cuenta. Un plugin roto puede tirar la tienda.', chip: 'Vos lo mantenés' },
+        ia: { claim: 'Sin IA nativa', detail: 'No incluye asistente de IA. Requiere plugins o servicios externos.', chip: 'Sin IA' }
       }
     },
     empretienda: {
@@ -63,7 +65,8 @@
         logistica: { claim: 'Integraciones de envío acotadas', detail: 'Cobertura de correos más limitada frente a Envío Nube.', chip: 'Cobertura menor' },
         soporte: { claim: 'Soporte local, equipo más chico', detail: 'Hay soporte, pero con un equipo y una cobertura mucho menores.', chip: 'Equipo chico' },
         marketing: { claim: 'Sin suite de marketing nativa', detail: 'No hay una herramienta de email y automatizaciones comparable a Marketing Nube.', chip: 'Sin Marketing Nube' },
-        apps: { claim: 'Catálogo de apps reducido', detail: 'Menos apps e integraciones locales para hacer crecer la tienda.', chip: 'Menos integraciones' }
+        apps: { claim: 'Catálogo de apps reducido', detail: 'Menos apps e integraciones locales para hacer crecer la tienda.', chip: 'Menos integraciones' },
+        ia: { claim: 'Sin IA nativa', detail: 'No incluye asistente de IA ni herramientas de gestión automatizadas.', chip: 'Sin IA' }
       }
     },
     tiendanegocio: {
@@ -73,7 +76,8 @@
         logistica: { claim: 'Integraciones de envío más básicas', detail: 'Sin el alcance de Envío Nube (Andreani, Correo Argentino y más).', chip: 'Cobertura menor' },
         soporte: { claim: 'Soporte local, equipo más chico', detail: 'Hay soporte, pero con un equipo y una cobertura mucho menores.', chip: 'Soporte básico' },
         marketing: { claim: 'Sin integración nativa con Meta ni Google Shopping', detail: 'Tienda Negocio no tiene Marketing Nube ni conexión nativa con las principales plataformas de publicidad.', chip: 'Sin Marketing Nube' },
-        apps: { claim: 'Ecosistema de apps muy limitado', detail: 'Sin el ecosistema de +200 apps locales (Xubio, Colppy, MELI, Facebook, Google) que tiene Tiendanube.', chip: 'Menos integraciones' }
+        apps: { claim: 'Ecosistema de apps muy limitado', detail: 'Sin el ecosistema de +200 apps locales (Xubio, Colppy, MELI, Facebook, Google) que tiene Tiendanube.', chip: 'Menos integraciones' },
+        ia: { claim: 'Sin IA nativa', detail: 'No incluye asistente de IA ni herramientas de gestión automatizadas.', chip: 'Sin IA' }
       }
     }
   };
