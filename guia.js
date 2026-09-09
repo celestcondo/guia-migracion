@@ -69,9 +69,9 @@
     tiendanegocio: {
       name: 'Tienda Negocio', cells: {
         costo: { claim: 'Planes más baratos, pero sin herramientas para crecer', detail: 'Sin Pago Nube, Envío Nube ni suite de marketing incluidos. Tiendanube incluye todo lo que necesitás para escalar desde el primer día.', chip: 'Sin herramientas de escala' },
-        pagos: { claim: 'Sin solución de pago propia', detail: 'Tienda Negocio no tiene un checkout nativo optimizado. Pago Nube tiene todos los medios argentinos y es 30% más rápido.', chip: 'Sin Pago Nube' },
-        logistica: { claim: 'Integraciones de envío más básicas', detail: 'Sin el alcance de Envío Nube (OCA, Andreani, Mercado Envíos y más). 16% más barato que el promedio del mercado.', chip: 'Cobertura menor' },
-        soporte: { claim: 'Plataforma sin track record', detail: '+65.000 tiendas activas y +10 años en el mercado. Soporte humano 24/7 que entiende AFIP, cuotas y logística local.', chip: 'Sin experiencia' },
+        pagos: { claim: 'Sin solución de pago propia', detail: 'Tienda Negocio no tiene un checkout nativo optimizado. Pago Nube tiene todos los medios argentinos integrados y el checkout es 3x más rápido.', chip: 'Sin Pago Nube' },
+        logistica: { claim: 'Integraciones de envío más básicas', detail: 'Sin el alcance de Envío Nube (OCA, Andreani, Mercado Envíos y más). Mayor cobertura y tarifas preferenciales.', chip: 'Cobertura menor' },
+        soporte: { claim: 'Soporte limitado, sin especialistas locales', detail: 'Sin el soporte 24/7 de Tiendanube que entiende ARCA, cuotas y logística argentina. +65.000 tiendas activas y +10 años de trayectoria.', chip: 'Soporte básico' },
         marketing: { claim: 'Sin integración nativa con Meta ni Google Shopping', detail: 'Tienda Negocio no tiene Marketing Nube ni conexión nativa con las principales plataformas de publicidad.', chip: 'Sin Marketing Nube' },
         apps: { claim: 'Ecosistema de apps muy limitado', detail: 'Sin el ecosistema de +200 apps locales (Xubio, Colppy, MELI, Facebook, Google) que tiene Tiendanube.', chip: 'Menos integraciones' }
       }
