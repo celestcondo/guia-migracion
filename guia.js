@@ -70,7 +70,7 @@
       name: 'Tienda Negocio', cells: {
         costo: { claim: 'Planes más baratos, pero sin herramientas para crecer', detail: 'Sin Pago Nube, Envío Nube ni suite de marketing incluidos. Tiendanube incluye todo lo que necesitás para escalar desde el primer día.', chip: 'Sin herramientas de escala' },
         pagos: { claim: 'Sin solución de pago propia', detail: 'Tienda Negocio no tiene un checkout nativo optimizado. Pago Nube tiene todos los medios argentinos integrados y el checkout es 3x más rápido.', chip: 'Sin Pago Nube' },
-        logistica: { claim: 'Integraciones de envío más básicas', detail: 'Sin el alcance de Envío Nube (OCA, Andreani, Mercado Envíos y más).', chip: 'Cobertura menor' },
+        logistica: { claim: 'Integraciones de envío más básicas', detail: 'Sin el alcance de Envío Nube (Andreani, Correo Argentino y más).', chip: 'Cobertura menor' },
         soporte: { claim: 'Soporte limitado, sin especialistas locales', detail: 'Sin el soporte 24/7 de Tiendanube que entiende ARCA, cuotas y logística argentina.', chip: 'Soporte básico' },
         marketing: { claim: 'Sin integración nativa con Meta ni Google Shopping', detail: 'Tienda Negocio no tiene Marketing Nube ni conexión nativa con las principales plataformas de publicidad.', chip: 'Sin Marketing Nube' },
         apps: { claim: 'Ecosistema de apps muy limitado', detail: 'Sin el ecosistema de +200 apps locales (Xubio, Colppy, MELI, Facebook, Google) que tiene Tiendanube.', chip: 'Menos integraciones' }
